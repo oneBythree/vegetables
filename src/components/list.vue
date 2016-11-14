@@ -1,4 +1,10 @@
+<style type="text/css">
+ @import '../common/mui/css/mui.picker.min.css';
+</style>
 <script>
+import '../common/mui.js'
+import '../common/mui/mui.picker.js'
+import '../common/mui/mui.dtpicker.js'
 export default {
     data() {
             var lists = [];

@@ -7,6 +7,7 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'build.js'
   },
+  stats: { children: false },
   module: {
     loaders: [
       {
