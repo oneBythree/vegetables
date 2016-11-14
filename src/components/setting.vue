@@ -9,7 +9,7 @@
 	padding-left:0;
 }
 .m-radio-list:after{
-	position: absolute;
+    position: absolute;
     right: 0;
     bottom: 0;
     left: 15px;

@@ -2,7 +2,7 @@
 	
 </template>
 <style >
-	@import '../common/mui/css/mui.picker.css';
+@import '../common/mui/css/mui.picker.css';
 	.m-mui-content {
 height: 0px;
 margin: 0px;

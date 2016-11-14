@@ -8,7 +8,6 @@ var routerMap = require('./router')
 
 require('./common/mui.js')
 
-// require('./common/mui/mui.picker.js');
 
 Vue.use(VueResource);
 Vue.use(VueRouter);
