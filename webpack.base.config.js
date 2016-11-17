@@ -7,6 +7,7 @@ var webpack = require('webpack');
 
 module.exports = {
     // 入口
+
     entry: {
         main: './src/main',
         vendors: ['vue', 'vue-router']
@@ -15,14 +16,17 @@ module.exports = {
     output: {
         path: path.join(__dirname, './dist')
     },
+    externals: {
+        'zepto': 'Zepto'
+    },
     // 加载器
     module: {
         loaders: [
             { test: /\.vue$/, loader: 'vue' },
             { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
-            { test: /\.css$/, loader: 'style!css!autoprefixer'},
-            { test: /\.scss$/, loader: 'style!css!sass?sourceMap'},
-            { test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=8192'},
+            { test: /\.css$/, loader: 'style!css!autoprefixer' },
+            { test: /\.scss$/, loader: 'style!css!sass?sourceMap' },
+            { test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=8192' },
             { test: /\.(html|tpl)$/, loader: 'html-loader' }
         ]
     },
@@ -40,6 +44,7 @@ module.exports = {
             components: path.join(__dirname, './src/components')
         }
     },
+    devtool: 'eval-source-map',
     plugins: [
 
     ]

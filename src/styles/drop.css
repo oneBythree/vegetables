@@ -37,7 +37,7 @@
   -webkit-transition: max-height 1s ease-in-out;
   transition: max-height 1s ease-in-out;
 }
-.drop-hide {
+.m-props-module .drop-hide.m-props-content  {
   max-height: 0;
   -moz-transform: scaleY(0);
   -ms-transform: scaleY(0);
