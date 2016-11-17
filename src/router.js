@@ -1,24 +1,35 @@
-module.exports = function(router){
-	router.map({
-		'*': {
-            component: require('./components/index.vue')
-        },
-        '/': {
-            component: require('./components/index.vue')
-        },
-        '/list': {
-            component: require('./components/list.vue')
-        },
-        '/asi': {
-            component: require('./components/asi.vue')
-        },
-        '/into':{
-            component: require('./components/into.vue')
-        },
-        '/setting':{
-            component: require('./components/setting.vue')
+/**
+ * Created by aresn on 16/8/22.
+ */
+const routers = {
+    '/index': {
+        component (resolve) {
+            require(['./views/index.vue'], resolve);
         }
-    })
-
-	
-}
+    },
+    '/menu':{
+    	component(resolve){
+    		require(['./views/menu.vue'],resolve);
+    	}
+    },
+    '/setting':{
+    	component(resolve){
+    		require(['./views/list.vue'],resolve);
+    	}
+    }
+};
+export default routers;
+// 
+// module.exports = function(router){
+// 	router.map({
+// 		'*': {
+//             views: require('./views/index.vue')
+//         },
+//         '/index': {
+//             views: require('./views/index.vue')
+//         },
+//         '/menu': {
+//             views: require('./views/menu.vue')
+//         } 
+//     })	
+// }

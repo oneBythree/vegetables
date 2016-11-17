@@ -1,34 +1,34 @@
-var Vue = require('vue')
-var VueRouter = require('vue-router')
-var VueAsyncData = require('vue-async-data')
-var VueResource = require('vue-resource')
-var App = require('./app.vue')
-var routerMap = require('./router')
+/**
+ * Created by aresn on 16/6/20.
+ */
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import App from './app.vue';
+import Routers from './router';
+import Env from './config/env';
 
-require('./common/mui.js')
-
-Vue.use(VueResource);
 Vue.use(VueRouter);
-Vue.use(VueAsyncData);
 
+// 开启debug模式
+Vue.config.debug = true;
 
-// filter
-var filter = require('./filter');
-
-Object.keys(filter).forEach(function(k) {
-  Vue.filter(k, filter[k]);
+// 路由配置
+let router = new VueRouter({
+    // 是否开启History模式的路由,默认开发环境开启,生产环境不开启。如果生产环境的服务端没有进行相关配置,请慎用
+    history: Env != 'production'
 });
 
-//directive
-var directive = require('./directive')
+router.map(Routers);
 
-Object.keys(directive).forEach(function(k) {
-  Vue.directive(k, directive[k]);
+router.beforeEach(() => {
+    window.scrollTo(0, 0);
 });
 
+router.afterEach(() => {
 
-var router = new VueRouter()
+});
 
-routerMap(router)
-
-router.start(App, 'app')
+router.redirect({
+    '*': "/index"
+});
+router.start(App, '#app');
