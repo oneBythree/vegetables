@@ -1,13 +1,3 @@
-<<<<<<< HEAD:src/common/mui/css/mui.css
-/*!
- * =====================================================
- * Mui v3.4.0 (http://dev.dcloud.net.cn/mui)
- * =====================================================
- */
-
-/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
-=======
->>>>>>> 6819cce238bc43658aadb6c420eb2181884da238:src/assets/css/mui.css
 html
 {
     font-family: sans-serif;
@@ -15,10 +5,10 @@ html
     -webkit-text-size-adjust: 100%;
 }
 
-/*body
+body
 {
     margin: 0;
-}*/
+}
 
 article,
 aside,
@@ -86,12 +76,12 @@ dfn
     font-style: italic;
 }
 
-/*h1
+h1
 {
     font-size: 2em;
 
     margin: .67em 0;
-}*/
+}
 
 mark
 {
@@ -523,18 +513,18 @@ a:active
     font-size: 15px;
 }
 
-/*h1, h2, h3, h4, h5, h6
+h1, h2, h3, h4, h5, h6
 {
     line-height: 1;
 
     margin-top: 5px;
     margin-bottom: 5px;
-}*/
+}
 
-/*h1, .mui-h1
+h1, .mui-h1
 {
     font-size: 36px;
-}*/
+}
 
 h2, .mui-h2
 {
@@ -566,7 +556,7 @@ h6, .mui-h6
 
     color: #8f8f94;
 }
-/*
+
 p
 {
     font-size: 14px;
@@ -575,7 +565,7 @@ p
     margin-bottom: 10px;
 
     color: #8f8f94;
-}*/
+}
 
 .mui-row:before, .mui-row:after
 {
@@ -2778,6 +2768,7 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 {
     margin: 0;
     padding: 11px 15px;
+
     vertical-align: top;
 
     border-right: 1px solid #eee;
@@ -2850,7 +2841,7 @@ select:focus
     -webkit-user-modify: read-write-plaintext-only;
 }
 
-/*select,
+select,
 textarea,
 input[type='text'],
 input[type='search'],
@@ -2883,7 +2874,7 @@ input[type='color']
 
     -webkit-appearance: none;
 }
-*/
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button
 {
@@ -5576,7 +5567,6 @@ body > .mui-progressbar
 {
     display: none !important;
 }
-<<<<<<< HEAD:src/common/mui/css/mui.css
 
 .mui-plus.mui-statusbar.mui-statusbar-offset .mui-bar-nav
 {
@@ -5615,5 +5605,3 @@ body > .mui-progressbar
 
     border: 0;
 }
-=======
->>>>>>> 6819cce238bc43658aadb6c420eb2181884da238:src/assets/css/mui.css
