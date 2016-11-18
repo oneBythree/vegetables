@@ -10,9 +10,9 @@
     </header>
     <div class="m-content">
         <nav class="m-tab m-border-tb r-tab-filter">
-            <a class="g-cell r-filter-timer" @click="toggleDrop('timer',$event)">
+            <a class="g-cell hitme" @click="toggleDrop('timer',$event)">
                 进场时间
-                <span class="m-caret-down"></span>
+                <i ></i>
             </a>
             <a class="g-cell r-filter-weight " @click="toggleDrop('weight')">
                 重量
@@ -78,6 +78,8 @@
             </dt>
         </dl>
     </div>
+    <div id="Arrow"></div>
+    <a class="hitme">点击<i></i></a>
     <div class="m-cover" v-if="drop.flag" @click="closeDrop()"></div>
 </template>
 <style scoped lang="sass">
@@ -102,15 +104,29 @@ nav.r-tab-filter {
         color: #7c7c7c;
         width: 33.33334%;
     }
-    i.iconfont {
+    i.iconfont{
         font-size: .3rem;
     }
 }
 
-.up .m-caret-up,.up .m-caret-down {
-    -webkit-transition:  0.3s ease-in 0s;
+.up i:before {
+    -webkit-transition: -webkit-transform 0.2s ease-in;
+    -moz-transition: -moz-transform 0.2s ease-in;
+    -o-transition: -o-transform 0.2s ease-in;
+    transition: transform 0.2s ease-in;
 }
 
+.up i.icon-filter-down:before  {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+// .up .m-caret-up,
+// .up .m-caret-down {
+//     -webkit-transition: 0.3s ease-in 0s;
+// }
 .m-props-module a.item {
     font-size: .3rem;
     display: block;
@@ -134,12 +150,76 @@ nav.r-tab-filter {
 
 .m-caret-down {
     position: relative;
-     top: .28rem;
+    top: .28rem;
     width: 0;
     height: 0;
     border-left: .16rem solid transparent;
     border-right: .16rem solid transparent;
     border-top: .2rem solid #7c7c7c;
+}
+
+#Arrow {
+    width: 0px;
+    height: 0px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid red;
+    transition: 0.5s;
+    -moz-transition: -moz-transform 0.5s;
+    /* Firefox 4 */
+    -webkit-transition: -webkit-transform 0.5s;
+    /* Safari and Chrome */
+    -o-transition: -o-transform 0.5s;
+    /* Opera */
+}
+
+#Arrow:active #Arrow {
+    -moz-transform: rotateZ(180deg);
+    -webkit-transform: rotateZ(180deg);
+    -o-transform: rotateZ(180deg);
+    transform: rotateZ(180deg);
+    filter: FlipV;
+}
+
+i {
+    font-weight: 500;
+    font-style: normal;
+}
+
+.hitme {
+    display: block;
+    line-height: 22px;
+    height: 22px;
+    overflow: visible;
+    padding: 0px 15px;
+    font-size: 14px;
+    width: 40px;
+    position: relative;
+}
+
+.hitme i {
+    border-color: transparent transparent #626262 transparent;
+    border-style: solid;
+    border-width: 0px 4px 4px 4px;
+    _border-style: solid dotted;
+    position: absolute;
+    top: .2rem;
+    right: 10px;
+    width: 0px;
+    height: 0px;
+    zoom: 1;
+    -webkit-transition: -webkit-transform 0.2s ease-in;
+    -moz-transition: -moz-transform 0.2s ease-in;
+    -o-transition: -o-transform 0.2s ease-in;
+    transition: transform 0.2s ease-in;
+}
+
+.addMe i,
+.hitme:hover i {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 </style>
 <script>
@@ -161,7 +241,7 @@ export default {
             toggleDrop: function(type, el) {
                 var thisEl = $(el.currentTarget);
                 thisEl.addClass('up');
-                thisEl.find('span').removeClass('m-caret-down').addClass('m-caret-up')
+                // thisEl.find('span').removeClass('m-caret-down').addClass('m-caret-up')
                 switch (type) {
                     case 'timer':
                         this.drop.flag = true;
@@ -171,7 +251,7 @@ export default {
                         break;
                 }
             },
-            closeDrop:function(){
+            closeDrop: function() {
                 this.drop.flag = false;
                 this.drop.classe = 'drop-hide';
             }
