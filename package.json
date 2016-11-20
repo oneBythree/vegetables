@@ -16,6 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "vue": "^1.0.25",
+    "vue-animate": "0.0.4",
     "vue-router": "^0.7.13",
     "webpack-zepto": "0.0.1"
   },

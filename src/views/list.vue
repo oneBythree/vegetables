@@ -1,34 +1,35 @@
 <template>
     <header class="m-header">
-        <a href="javascript:;" class="left-icon">
-            <i class="iconfont icon-back"></i>
+        <a href="javascript:;" class="left-icon iconfont icon-back">
         </a>
-        <a href="javascript:;" class="right-icon">
-            <i class="iconfont icon-more"></i>
+        <a href="javascript:;" class="right-icon iconfont icon-more r-meun-drop" @click="moreMenu">
         </a>
         <h1>蔬菜进场</h1>
     </header>
+    <!-- 悬浮菜单start -->
+    <menu-drop :is-menu="isMenu" :menu-datas="menuDatas" @meu-select-click="meuSelectClick"></menu-drop>
+    <!-- 悬浮菜单end -->
     <div class="m-content">
-        <nav class="m-tab m-border-tb r-tab-filter">
-            <a class="g-cell hitme" @click="toggleDrop('timer',$event)">
-                进场时间
-                <i ></i>
-            </a>
-            <a class="g-cell r-filter-weight " @click="toggleDrop('weight')">
-                重量
-                <i class="iconfont icon-filter-down"></i>
-            </a>
-            <a class="g-cell" @click="toggleDrop(weight)">
-                筛选
-                <i class="iconfont icon-filter"></i>
-            </a>
-        </nav>
-        <div class="m-props-module r-props-timer">
-            <div class="m-props-content m-border-tb {{drop.classe}}">
-                <a href="javascript:;" class="item m-border">顺序</a>
-                <a href="javascript:;" class="item m-border">倒序</a>
-            </div>
-        </div>
+        <!-- 搜索tab选项卡 start-->
+        <nav-bar :items="items" :selected.sync="selected"></nav-bar>
+        <!-- 搜索tab选项卡 end-->
+        <drop-select :type-name="typeName1" :my-drop-name="myDropName1" :drop-name.sync="selected" :droplists="droplists" @drop-select-item="dropSelectItem" :select-droped.sync="isSelectDrop1"></drop-select>
+        <drop-select :type-name="typeName2" :my-drop-name="myDropName2" :drop-name.sync="selected" :droplists="droplists" @drop-select-item="dropSelectItem" :select-droped.sync="isSelectDrop2"></drop-select>
+        <drop-select :type-name="typeName3" :header-title="headerTitle" :my-drop-name="myDropName3" :drop-name.sync="selected" :select-droped.sync="isSelectDrop3" :transition="transition">
+            <form class="r-timer-filter">
+                <div class="m-flex-box ">
+                    <label>开始时间</label>
+                    <input class="m-flex-1" type="text" readonly="">
+                </div>
+                <div class="m-flex-box">
+                    <label>结束时间</label>
+                    <input class="m-flex-1" type="text" readonly="">
+                </div>
+                <div class="m-flex-box r-submit">
+                    <a href="javascript:;" class="r-button">确认搜索</a>
+                </div>
+            </form>
+        </drop-select>
         <dl class="g-list r-list m-border">
             <dt>
                 <strong>供应商</strong>
@@ -78,12 +79,92 @@
             </dt>
         </dl>
     </div>
-    <div id="Arrow"></div>
-    <a class="hitme">点击<i></i></a>
-    <div class="m-cover" v-if="drop.flag" @click="closeDrop()"></div>
 </template>
+<script>
+import MenuDrop from '../directves/menu-drop/menu-drop.vue';
+import NavBar from '../directves/nav.vue';
+import DropSelect from '../directves/drop-select.vue';
+
+export default {
+    data() {
+            return {
+                menuDatas: [{
+                    'key': 'add',
+                    'text': '添加',
+                    'icon': 'icon-add'
+                }, {
+                    'key': 'del',
+                    'text': '删除',
+                    'icon': 'icon-del'
+                }],
+                items: [{
+                    'key': 'timer',
+                    'text': '进场时间'
+                }, {
+                    'key': 'weight',
+                    'text': '重量'
+                }, {
+                    'key': 'filter',
+                    'text': '筛选',
+                    'icon': 'icon-filter'
+                }],
+                droplists: [{
+                    'key': 0,
+                    'text': '顺序'
+                }, {
+                    'key': 1,
+                    'text': '倒序'
+                }],
+                selected: null,
+                isSelectDrop1: false, //timer下拉列表是否被选中
+                isSelectDrop2: false, //weight下拉列表是否被选中
+                myDropName3: false, //filter 筛选是否点击
+                myDropName1: 'timer',
+                myDropName2: 'weight',
+                myDropName3: 'filter',
+                typeName1: 'unGreenAll',
+                typeName2: 'unGreenAll',
+                typeName3: 'GreenAll',
+                headerTitle: '时间筛选',
+                transition: 'right',
+                // isMenu: false
+            }
+        },
+        props: {
+            isMenu: {
+                type: Boolean,
+                require: true,
+                default: false
+            }
+        },
+        ready: function() {
+
+        },
+        methods: {
+            dropSelectItem: function(key) {
+                console.log(key);
+            },
+            meuSelectClick: function(key) {
+                console.log(key)
+            },
+            //点击展示 悬浮菜单
+            moreMenu: function() {
+                if (this.isMenu == true) {
+                    this.isMenu = false;
+                } else {
+                    this.isMenu = true;
+                }
+            },
+        },
+        components: {
+            NavBar,
+            MenuDrop,
+            DropSelect,
+
+        },
+}
+</script>
 <style scoped lang="sass">
-@import '../common/mui/css/mui.picker.css';
 dl.r-list {
     background: #fff;
     font-size: .3rem;
@@ -94,167 +175,41 @@ dl.r-list {
     }
 }
 
-nav.r-tab-filter {
-    display: table;
-    width: 100%;
+form.r-timer-filter {
     font-size: .3rem;
-    a.g-cell {
-        position: relative;
-        text-align: center;
-        color: #7c7c7c;
-        width: 33.33334%;
+    padding: .3rem;
+    background: #fff;
+    .m-flex-box {
+        display: flex;
+        display: box;
+        margin-bottom: .3rem;
+        height: .6rem;
+        line-height: .6rem;
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+        input.m-flex-1 {
+            flex: 1;
+            box-flex: 1;
+            border: 1px solid #e7e7e7;
+            border-radius: .05rem;
+            padding-left: .1rem;
+        }
+        &.r-submit {
+            display: block;
+            text-align: center;
+            a.r-button {
+                display: inline-block;
+                background: #22ac38;
+                color: #fff;
+                border-radius: .05rem;
+                padding: 0 .3rem;
+            }
+        }
     }
-    i.iconfont{
-        font-size: .3rem;
+    label {
+        display: inline-block;
+        margin-right: .2rem;
     }
-}
-
-.up i:before {
-    -webkit-transition: -webkit-transform 0.2s ease-in;
-    -moz-transition: -moz-transform 0.2s ease-in;
-    -o-transition: -o-transform 0.2s ease-in;
-    transition: transform 0.2s ease-in;
-}
-
-.up i.icon-filter-down:before  {
-    -moz-transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
-}
-
-// .up .m-caret-up,
-// .up .m-caret-down {
-//     -webkit-transition: 0.3s ease-in 0s;
-// }
-.m-props-module a.item {
-    font-size: .3rem;
-    display: block;
-    color: #7c7c7c;
-    line-height: .75rem;
-    height: .75rem;
-    &.m-border:last-of-type:after {
-        width: 0;
-    }
-}
-
-.m-caret-up {
-    position: relative;
-    top: - .28rem;
-    width: 0;
-    height: 0;
-    border-left: .16rem solid transparent;
-    border-right: .16rem solid transparent;
-    border-bottom: .2rem solid #7c7c7c;
-}
-
-.m-caret-down {
-    position: relative;
-    top: .28rem;
-    width: 0;
-    height: 0;
-    border-left: .16rem solid transparent;
-    border-right: .16rem solid transparent;
-    border-top: .2rem solid #7c7c7c;
-}
-
-#Arrow {
-    width: 0px;
-    height: 0px;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid red;
-    transition: 0.5s;
-    -moz-transition: -moz-transform 0.5s;
-    /* Firefox 4 */
-    -webkit-transition: -webkit-transform 0.5s;
-    /* Safari and Chrome */
-    -o-transition: -o-transform 0.5s;
-    /* Opera */
-}
-
-#Arrow:active #Arrow {
-    -moz-transform: rotateZ(180deg);
-    -webkit-transform: rotateZ(180deg);
-    -o-transform: rotateZ(180deg);
-    transform: rotateZ(180deg);
-    filter: FlipV;
-}
-
-i {
-    font-weight: 500;
-    font-style: normal;
-}
-
-.hitme {
-    display: block;
-    line-height: 22px;
-    height: 22px;
-    overflow: visible;
-    padding: 0px 15px;
-    font-size: 14px;
-    width: 40px;
-    position: relative;
-}
-
-.hitme i {
-    border-color: transparent transparent #626262 transparent;
-    border-style: solid;
-    border-width: 0px 4px 4px 4px;
-    _border-style: solid dotted;
-    position: absolute;
-    top: .2rem;
-    right: 10px;
-    width: 0px;
-    height: 0px;
-    zoom: 1;
-    -webkit-transition: -webkit-transform 0.2s ease-in;
-    -moz-transition: -moz-transform 0.2s ease-in;
-    -o-transition: -o-transform 0.2s ease-in;
-    transition: transform 0.2s ease-in;
-}
-
-.addMe i,
-.hitme:hover i {
-    -moz-transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
 }
 </style>
-<script>
-export default {
-    // import $ from 'zepto';
-    data() {
-            return {
-                drop: {
-                    flag: false,
-                    classe: ''
-                }
-
-            }
-        },
-        ready: function() {
-
-        },
-        methods: {
-            toggleDrop: function(type, el) {
-                var thisEl = $(el.currentTarget);
-                thisEl.addClass('up');
-                // thisEl.find('span').removeClass('m-caret-down').addClass('m-caret-up')
-                switch (type) {
-                    case 'timer':
-                        this.drop.flag = true;
-                        this.drop.classe = 'drop-show';
-                        break;
-                    default:
-                        break;
-                }
-            },
-            closeDrop: function() {
-                this.drop.flag = false;
-                this.drop.classe = 'drop-hide';
-            }
-        },
-}
-</script>

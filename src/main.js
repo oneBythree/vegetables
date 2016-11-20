@@ -1,6 +1,8 @@
 /**1
  * Created by aresn on 16/6/20.
  */
+
+require('./common/animate/animate.css');
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from 'components/app.vue';
@@ -9,7 +11,14 @@ import Env from './config/env';
 
 Vue.use(VueRouter);
 
-
+Vue.transition('right', {
+    enterClass: 'fadeInRightBig',
+    leaveClass: 'fadeOutRightBig'
+});
+Vue.transition('down', {
+    enterClass: 'fadeIn',
+    leaveClass: 'fadeOut'
+});
 // 开启debug模式
 Vue.config.debug = true;
 
