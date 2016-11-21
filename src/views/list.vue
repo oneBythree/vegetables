@@ -7,7 +7,7 @@
         <h1>蔬菜进场</h1>
     </header>
     <!-- 悬浮菜单start -->
-    <menu-drop :is-menu="isMenu" :menu-datas="menuDatas" @meu-select-click="meuSelectClick"></menu-drop>
+    <menu-drop :is-menu.sync="isMenu" :menu-datas="menuDatas" @meu-select-click="meuSelectClick"></menu-drop>
     <!-- 悬浮菜单end -->
     <div class="m-content">
         <!-- 搜索tab选项卡 start-->
@@ -84,7 +84,6 @@
 import MenuDrop from '../directves/menu-drop/menu-drop.vue';
 import NavBar from '../directves/nav.vue';
 import DropSelect from '../directves/drop-select.vue';
-
 export default {
     data() {
             return {
@@ -127,32 +126,33 @@ export default {
                 typeName3: 'GreenAll',
                 headerTitle: '时间筛选',
                 transition: 'right',
-                // isMenu: false
+                isMenu: false
             }
         },
         props: {
-            isMenu: {
-                type: Boolean,
-                require: true,
-                default: false
-            }
+            // isMenu: {
+            //     type: Boolean,
+            //     require: true,
+            //     default: false
+            // }
         },
         ready: function() {
-
+            mui.init();
         },
         methods: {
             dropSelectItem: function(key) {
                 console.log(key);
             },
             meuSelectClick: function(key) {
-                console.log(key)
+                // console.log(key)
             },
             //点击展示 悬浮菜单
             moreMenu: function() {
-                if (this.isMenu == true) {
-                    this.isMenu = false;
-                } else {
+                console.log(this.isMenu)
+                if (this.isMenu == false) {
                     this.isMenu = true;
+                } else {
+                    this.isMenu = false;
                 }
             },
         },
@@ -160,8 +160,7 @@ export default {
             NavBar,
             MenuDrop,
             DropSelect,
-
-        },
+        }
 }
 </script>
 <style scoped lang="sass">

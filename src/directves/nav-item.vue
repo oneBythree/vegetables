@@ -36,3 +36,26 @@ export default {
     }
 }
 </script>
+<style scoped>
+    /* 渐入菜单 */
+
+ul.m-menu-drop {
+    position: fixed;
+    top: .88rem;
+    right: 1px;
+    background: #fff;
+    z-index: 1000;
+    border: 1px solid #c7c7c7;
+    font-size: .3rem;
+}
+
+ul.m-menu-drop li {
+    line-height: .8rem;
+    height: .8rem;
+    padding: 0 .6rem 0 .3rem;
+}
+
+ul.m-menu-drop li:active {
+    background: #fafafa;
+}
+</style>

@@ -2,7 +2,8 @@
  * Created by aresn on 16/6/20.
  */
 
-require('./common/animate/animate.css');
+import  './common/animate/animate.css';
+import './common/mui/js/mui.js';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from 'components/app.vue';

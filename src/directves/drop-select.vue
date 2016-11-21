@@ -1,5 +1,5 @@
 <template>
-    <div class="m-props-module animated" :class="{'m-green-all':!isType}" :drop-select="dropName" :my-drop-name="myDropName" v-if="selectDrop" :transition="transition">
+    <div class="m-props-module animated" :class="{'m-green-all':!isType,'m-drop-select-module':isType}" :drop-select="dropName" :my-drop-name="myDropName" v-if="selectDrop" :transition="transition" @click.self="colseDrop">
         <div class="m-props-wapper" v-if="isType">
             <div class="m-props-content ">
                 <div class="m-props-select">
@@ -81,8 +81,7 @@ export default {
             return _data;
         }
     },
-    ready: function() {
-    },
+    ready: function() {},
     methods: {
         closeDrop: function() {
             this.selectDrop = false;
@@ -114,6 +113,11 @@ export default {
     height: 100%;
 }
 
+.m-props-module.m-drop-select-module {
+    top: 0;
+    padding-top: 1.68rem;
+}
+
 .m-props-wapper {
     width: 100%;
     height: 100%;
@@ -142,6 +146,7 @@ export default {
     background: #fff;
     padding: 0 .3rem;
     z-index: 2;
+    border-top:1px solid #e7e7e7;
 }
 
 .m-props-module a.item {
@@ -160,5 +165,10 @@ export default {
     top: 0;
     left: 0;
     background: #ebebeb;
+}
+
+.m-props-module.animated.m-drop-select-module{
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
 }
 </style>

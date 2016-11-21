@@ -1,7 +1,8 @@
 <template>
-    <ul class="m-menu-drop" v-if="isMenu">
+    <ul class="m-menu-drop" v-if="isMenu" transition="right">
         <menu-drop-item v-for="item in menuDatas" :item="item" @meu-select-fuc="meuSelectFuc"></menu-drop-item>
     </ul>
+    <div class="m-content-warp2" v-if="isMenu" @click="hideMenuDrop"></div>
 </template>
 <script>
 import MenuDropItem from './menu-drop-item.vue';
@@ -31,20 +32,14 @@ export default {
         // console.log(this.isMenu);
     },
     methods: {
-        //点击其他元素隐藏
-        hideMenuDrop: function() {
-            var that = this;
-            var el = this.domEl;
-            document.addEventListener('click', function(e) {
-                if ($(e.target).parents('.m-menu-drop').length <= 0 && !$(e.target).hasClass(el)) {
-                    that.isMenu = false;
-                }
-            })
-        },
         //点击菜单选项
         meuSelectFuc: function(key) {
             this.isMenu = false;
             this.$dispatch('meu-select-click', key);
+        },
+        // 点击其他地方隐藏
+        hideMenuDrop:function(){
+             this.isMenu = false;
         }
     },
     computed: {
@@ -61,11 +56,6 @@ export default {
                 }
             })
             return _data;
-        }
-    },
-    watch: {
-        isMenu(cur, old) {
-            // console.log(cur);x
         }
     },
     components: {
