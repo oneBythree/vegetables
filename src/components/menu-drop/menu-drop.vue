@@ -1,5 +1,5 @@
 <template>
-    <ul class="m-menu-drop" v-if="isMenu" transition="right">
+    <ul class="m-menu-drop" v-if="isMenu" transition="rightLite">
         <menu-drop-item v-for="item in menuDatas" :item="item" @meu-select-fuc="meuSelectFuc"></menu-drop-item>
     </ul>
     <div class="m-content-warp2" v-if="isMenu" @click="hideMenuDrop"></div>

@@ -1,6 +1,6 @@
-<style scoped>
-    @import './styles/common.css';
-    @import './common/mui/css/mui.css';
+
+<style>
+    @import '../sass/common.css';
 </style>
 <template>
     <div>
@@ -8,16 +8,14 @@
     </div>
 </template>
 <script>
-    import './common/mui/js/mui.js';
     export default {
         data () {
             return {}
         },
         ready () {
-            console.log($)
+
         },
         beforeDestroy () {
-
 
         },
         methods: {
@@ -25,4 +23,3 @@
         }
     }
 </script>
-

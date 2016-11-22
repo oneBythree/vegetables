@@ -1,5 +1,4 @@
 @import 'reset.css';
-@import 'drop.css';
 body {
     background: #ebebeb;
 }
@@ -46,6 +45,8 @@ header.m-header h1 {
     text-overflow: ellipsis;
     color: #fff;
     text-align: center;
+    font-weight: normal;
+    font-size: .3rem;
 }
 
 header.m-header .left-icon {
@@ -167,3 +168,7 @@ ul.m-menu-drop li {
 ul.m-menu-drop li:active {
     background: #fafafa;
 }
+ul.m-menu-drop li .iconfont{
+    font-size: .3rem;
+}
+

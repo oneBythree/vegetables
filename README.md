@@ -1,8 +1,10 @@
-#vue-vueRouter-webpack
-> 本项目可以帮你快速搭建一个基于Vue的单页面富应用,但这并不意味着是最佳实践,所有的目录结构和webpack配置都可以根据自己需要修改
+#vue-vueRouter-webpack-mui
+> 本项目可以帮你快速搭建一个基于Vue+mui的单页面富应用,但这并不意味着是最佳实践,所有的目录结构和webpack配置都可以根据自己需要修改
 
 ##教程
 > 可以访问下面的链接来查看系列教程
+
+[Vue+Webpack原github地址](https://github.com/icarusion/vue-vueRouter-webpack)
 
 [Vue+Webpack开发可复用的单页面富应用教程（配置篇）](https://www.talkingcoder.com/article/6310080842228107877)
 
@@ -32,9 +34,19 @@
     │
     ├─ router.js       # 路由配置
     │
+    ├─api              # 放置与API交互js，理论上每个业务一个
+    |
+    ├─common           # 放置公用js
+    |
+    ├─entry            # 入口组件,内含路由和公共部分
+    |    │
+    |    └─ app.vue    # 入口组件
+    |    │
+    |    └─ main.js    # 启动配置
+    |    │
+    |    └─ router.js  # 路由配置
+    |
     ├─components       # 组件
-    │       │
-    │       └─ app.vue # 入口组件,内含路由和公共部分
     │
     ├─views            # 视图(即路由)
     │
@@ -48,11 +60,11 @@
     │
     ├─images           # 放置图片
     │
-    ├─styles           # 放置css
+    ├─sass             # 放置css
     │    │
-    │    ├─ common.css # 通用css
+    │    ├─ mui        # 所有mui的sass文件
     │    │
-    │    └─ reset.css  # 页面初始化css
+    │    └─ slwy.sass  # 页面样式入口文件
     │
     ├─fonts            # 放置iconfont字体
     │
@@ -60,7 +72,7 @@
     └─template         # 放置html模板,webpack依赖此文件生成所需的html
          │
          │
-         └─ index.ejs # 默认的html模板
+         └─ index.html # 默认的html模板
 
 </pre>
 
@@ -89,7 +101,7 @@ new ExtractTextPlugin("[name].css",{ allChunks : true,resolve : ['modules'] }),
 > 目前已将打包后的dist目录和webpack生成的index.html和index_prod.html加入了git忽略列表,如果不需要这样做,请修改。
 > 目前分开发环境和生产环境,分别对应webpack.dev.config.js和webpack.prod.config.js可以根据自己需要来调整相关webpack配置,比如添加灰度环境配置。
 > 目前的开发环境文件使用默认命名,生产环境使用带hash值的命名,可根据自己需要修改,但不建议修改本地环境为带hash的。
-> 入口的html文件模板在src/template/index.ejs内,可自行修改
+> 入口的html文件模板在src/template/index.html内,可自行修改
 
 ##安装
 ```
@@ -118,16 +130,4 @@ npm run build
 ####访问
 在浏览器地址栏输入http://127.0.0.1:8080
 
-#更新
-
-##2016.10.3
-* package支持了less和sass
-
-##2016.9.11
-* 修复打包到生产环境时,index_prod.html文件的html结构错误的bug
-
-##2016.8.22
-* 全部改为ES2015
-* 抽离路由配置为router.js
-* 将routers目录重命名为views
-* vue配置默认支持less和sass
+# webpack-vue-mui

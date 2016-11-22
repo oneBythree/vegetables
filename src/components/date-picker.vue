@@ -1,7 +1,9 @@
 <template>
 </template>
 <style>
-@import '../common/mui/css/mui.picker.css';
+@import '../common/mui/css/mui.min.css';
+@import '../common/mui/css/app.css';
+@import '../common/mui/css/mui.picker.min.css';
 .m-mui-content {
     height: 0px;
     margin: 0px;
@@ -11,6 +13,7 @@
 .mui-bar-nav ~ .m-mui-content {
     padding-top: 44px;
 }
+
 </style>
 <script type="text/javascript">
 import '../common/mui.js'

@@ -19,7 +19,7 @@
             <form class="r-timer-filter">
                 <div class="m-flex-box ">
                     <label>开始时间</label>
-                    <input class="m-flex-1" type="text" readonly="">
+                    <input class="m-flex-1" type="text" readonly="" @click="dateTimer()">
                 </div>
                 <div class="m-flex-box">
                     <label>结束时间</label>
@@ -81,9 +81,10 @@
     </div>
 </template>
 <script>
-import MenuDrop from '../directves/menu-drop/menu-drop.vue';
-import NavBar from '../directves/nav.vue';
-import DropSelect from '../directves/drop-select.vue';
+import MenuDrop from '../components/menu-drop/menu-drop.vue';
+import NavBar from '../components/nav.vue';
+import DropSelect from '../components/drop-select.vue';
+import DatePicker from '../components/date-picker.vue';
 export default {
     data() {
             return {
@@ -126,17 +127,12 @@ export default {
                 typeName3: 'GreenAll',
                 headerTitle: '时间筛选',
                 transition: 'right',
-                isMenu: false
+                isMenu: false,
+                starTime: null,
+                endTimer: null
             }
         },
-        props: {
-            // isMenu: {
-            //     type: Boolean,
-            //     require: true,
-            //     default: false
-            // }
-        },
-        ready: function() {
+        ready() {
             mui.init();
         },
         methods: {
@@ -155,15 +151,29 @@ export default {
                     this.isMenu = false;
                 }
             },
+            dateTimer: function() {
+                var that = this;
+                var param = {
+                    type: "date",
+                    beginYear: 2010,
+                    endYear: 2018
+                };
+                var picker = new mui.DtPicker(param);
+                picker.show(function(rs) {
+                    that.starTime = rs.value;
+                })
+            }
         },
         components: {
             NavBar,
             MenuDrop,
             DropSelect,
+            DatePicker
         }
 }
 </script>
 <style scoped lang="sass">
+
 dl.r-list {
     background: #fff;
     font-size: .3rem;

@@ -1,4 +1,4 @@
-<style scoped lang="sass">
+<style>
  h1.title{
     font-size: .84rem;
     color:#22ac38;

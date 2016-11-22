@@ -65,9 +65,9 @@ nav.r-tab-filter {
         position: relative;
         text-align: center;
         color: #7c7c7c;
-    }
-    i.iconfont {
-        font-size: .3rem;
+        .iconfont {
+            font-size: .3rem;
+        }
     }
 }
 

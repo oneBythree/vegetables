@@ -38,7 +38,6 @@ export default {
 </script>
 <style scoped>
     /* 渐入菜单 */
-
 ul.m-menu-drop {
     position: fixed;
     top: .88rem;
@@ -55,7 +54,7 @@ ul.m-menu-drop li {
     padding: 0 .6rem 0 .3rem;
 }
 
-ul.m-menu-drop li:active {
-    background: #fafafa;
+ .iconfont{
+    font-size: .3rem;
 }
 </style>
