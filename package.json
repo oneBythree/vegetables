@@ -1,6 +1,6 @@
 {
-  "name": "webpack-vue-mui",
-  "version": "1.1.0",
+  "name": "vegetables",
+  "version": "0.1",
   "description": "A base vue project with webpack",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/littleseven007/webpack-vue-mui.git"
+    "url": "git+https://github.com/oneBythree/vegetables.git"
   },
   "author": "Aresn",
   "license": "MIT",
@@ -44,9 +44,9 @@
     "webpack-dev-server": "^1.15.0"
   },
   "bugs": {
-    "url": "https://github.com/icarusion/vue-vueRouter-webpack/issues"
+    "url": "https://github.com/oneBythree/vegetables/issues"
   },
-  "homepage": "https://github.com/icarusion/vue-vueRouter-webpack#readme",
+  "homepage": "https://github.com/oneBythree/vegetables#readme",
   "keywords": [
     "1994qiyuexi!"
   ]

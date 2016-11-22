@@ -1,18 +1,6 @@
-#vue-vueRouter-webpack-mui
-> 本项目可以帮你快速搭建一个基于Vue+mui的单页面富应用,但这并不意味着是最佳实践,所有的目录结构和webpack配置都可以根据自己需要修改
+#vegetables 蔬菜肉管理系统后台
+> 本项目个基于Vue+mui的单页面富应用
 
-##教程
-> 可以访问下面的链接来查看系列教程
-
-[Vue+Webpack原github地址](https://github.com/icarusion/vue-vueRouter-webpack)
-
-[Vue+Webpack开发可复用的单页面富应用教程（配置篇）](https://www.talkingcoder.com/article/6310080842228107877)
-
-[Vue+Webpack开发可复用的单页面富应用教程（组件篇）](https://www.talkingcoder.com/article/6310724958473489215)
-
-[Vue+Webpack开发可复用的单页面富应用教程（技巧篇）](https://www.talkingcoder.com/article/6310756346094488391)
-
-[Vue+Webpack使用规范](https://www.talkingcoder.com/article/6309726065044556372)
 ##目录结构
 <pre>
 │  .gitignore          # 忽略文件,比如 node_modules
@@ -62,8 +50,6 @@
     │
     ├─sass             # 放置css
     │    │
-    │    ├─ mui        # 所有mui的sass文件
-    │    │
     │    └─ slwy.sass  # 页面样式入口文件
     │
     ├─fonts            # 放置iconfont字体
@@ -92,17 +78,6 @@ vue: {
     }
 }
 
-new ExtractTextPlugin("[name].css",{ allChunks : true,resolve : ['modules'] }),
-```
-
-#如何使用
-
-##说明
-> 目前已将打包后的dist目录和webpack生成的index.html和index_prod.html加入了git忽略列表,如果不需要这样做,请修改。
-> 目前分开发环境和生产环境,分别对应webpack.dev.config.js和webpack.prod.config.js可以根据自己需要来调整相关webpack配置,比如添加灰度环境配置。
-> 目前的开发环境文件使用默认命名,生产环境使用带hash值的命名,可根据自己需要修改,但不建议修改本地环境为带hash的。
-> 入口的html文件模板在src/template/index.html内,可自行修改
-
 ##安装
 ```
 // 安装前请先确保已安装node和npm
@@ -130,4 +105,4 @@ npm run build
 ####访问
 在浏览器地址栏输入http://127.0.0.1:8080
 
-# webpack-vue-mui
+# vegetables
