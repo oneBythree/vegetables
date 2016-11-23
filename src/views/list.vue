@@ -19,17 +19,45 @@
             <form class="r-timer-filter">
                 <div class="m-flex-box ">
                     <label>开始时间</label>
-                    <input class="m-flex-1" type="text" readonly="" @click="dateTimer()">
+                    <input class="m-flex-1" v-model="starTime" type="text" readonly="" @click="dateTimer('start')">
                 </div>
                 <div class="m-flex-box">
                     <label>结束时间</label>
-                    <input class="m-flex-1" type="text" readonly="">
+                    <input class="m-flex-1" v-model="endTime" type="text" readonly="" @click="dateTimer('end')">
                 </div>
                 <div class="m-flex-box r-submit">
                     <a href="javascript:;" class="r-button">确认搜索</a>
                 </div>
             </form>
         </drop-select>
+        <!--         <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <card-item v-for="come in comes">
+                    <dt>
+                        <strong>供应商</strong>
+                        <span>{{come.CZR_MC.value}}</span>
+                    </dt>
+                    <dd class="g-table-fix">
+                        <div class="g-cell">
+                            <strong>车牌号</strong>
+                            <span>{{come.TRANSPORTER_ID.value}}</span>
+                        </div>
+                        <div class="g-cell">
+                            <strong>总重量</strong>
+                            <span>{{come.WEIGHT.value}}</span>
+                        </div>
+                    </dd>
+                    <dd>
+                        <strong>产地</strong>
+                        <span>{{come.AREA_ORIGIN_NAME.value}}</span>
+                    </dd>
+                    <dt>
+                        <strong>进场日期</strong>
+                        <span>{{come.IN_DATE.value}}</span>
+                    </dt>
+                </card-item>
+            </div>
+        </div> -->
         <dl class="g-list r-list m-border">
             <dt>
                 <strong>供应商</strong>
@@ -85,6 +113,7 @@ import MenuDrop from '../components/menu-drop/menu-drop.vue';
 import NavBar from '../components/nav.vue';
 import DropSelect from '../components/drop-select.vue';
 import DatePicker from '../components/date-picker.vue';
+import CardItem from '../components/card/card-item.vue';
 export default {
     data() {
             return {
@@ -129,18 +158,28 @@ export default {
                 transition: 'right',
                 isMenu: false,
                 starTime: null,
-                endTimer: null
+                endTime: null,
+                comes: []
             }
+        },
+        route: {
+            // data: function(transition) {
+            //     var _self = this;
+            //     _self.getAjaxData(transition);
+            // }
         },
         ready() {
             mui.init();
+            this.getAjaxData();
         },
         methods: {
             dropSelectItem: function(key) {
                 console.log(key);
             },
             meuSelectClick: function(key) {
-                // console.log(key)
+                if (key === 'add') {
+                    this.$router.go('/add');
+                }
             },
             //点击展示 悬浮菜单
             moreMenu: function() {
@@ -151,29 +190,60 @@ export default {
                     this.isMenu = false;
                 }
             },
-            dateTimer: function() {
+            dateTimer: function(type) {
                 var that = this;
                 var param = {
                     type: "date",
-                    beginYear: 2010,
-                    endYear: 2018
+                    beginYear: 2012,
+                    endYear: 2020
                 };
-                var picker = new mui.DtPicker(param);
-                picker.show(function(rs) {
-                    that.starTime = rs.value;
-                })
+                console.log(type == 'start')
+                if (type == 'start') {
+                    var picker1 = new mui.DtPicker(param);
+                    picker1.show(function(rs) {
+                        that.starTime = rs.value;
+                    })
+
+                } else {
+                    if (that.starTime == null) {
+                        mui.toast('请选择开始时间');
+                        return false;
+                    }
+                    var picker2 = new mui.DtPicker(param);
+                    picker2.show(function(rs) {
+                        that.endTime = rs.value;
+                    })
+
+                }
+
+            },
+            getAjaxData: function() {
+                $.ajax({
+                    type: "GET",
+                    url: '../api/comeList.json',
+                    dataType: "json",
+                    success: function(json) {
+                        //请求完毕关闭进度条
+                        _self.$route.router.app.progressbar = false;
+                        if (json && json.code == 0) {
+                            transition.next({
+                                list: json.data.cartlist
+                            });
+                        }
+                    }
+                });
             }
         },
         components: {
             NavBar,
             MenuDrop,
             DropSelect,
-            DatePicker
+            DatePicker,
+            CardItem
         }
 }
 </script>
 <style scoped lang="sass">
-
 dl.r-list {
     background: #fff;
     font-size: .3rem;
@@ -213,12 +283,16 @@ form.r-timer-filter {
                 color: #fff;
                 border-radius: .05rem;
                 padding: 0 .3rem;
+                &:active {
+                    background: #2bd547;
+                }
             }
         }
     }
     label {
         display: inline-block;
         margin-right: .2rem;
+        white-space: nowrap;
     }
 }
 </style>

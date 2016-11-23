@@ -1,6 +1,6 @@
 {
   "name": "vegetables",
-  "version": "0.1",
+  "version": "1.1.0",
   "description": "A base vue project with webpack",
   "main": "index.js",
   "scripts": {

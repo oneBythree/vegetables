@@ -3,7 +3,7 @@ body {
     background: #ebebeb;
 }
 
-.m-content-warp2{
+.m-content-warp2 {
     position: absolute;
     top: 0;
     left: 0;
@@ -12,6 +12,7 @@ body {
     background: rgba(255, 255, 255, 0);
     z-index: 999;
 }
+
 
 /*头部*/
 
@@ -60,11 +61,16 @@ header.m-header .left-icon {
 
 header.m-header .right-icon {
     position: absolute;
-    right:0;
+    right: 0;
     top: 0;
     width: .88rem;
     color: #fff;
     text-align: center;
+}
+
+header.m-header a.left-icon:active,
+header.m-header a.right-icon:active {
+    background: #2bd547;
 }
 
 
@@ -168,7 +174,7 @@ ul.m-menu-drop li {
 ul.m-menu-drop li:active {
     background: #fafafa;
 }
-ul.m-menu-drop li .iconfont{
+
+ul.m-menu-drop li .iconfont {
     font-size: .3rem;
 }
-

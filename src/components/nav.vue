@@ -68,6 +68,9 @@ nav.r-tab-filter {
         .iconfont {
             font-size: .3rem;
         }
+        &:active{
+            background: #f3f3f3;
+        }
     }
 }
 

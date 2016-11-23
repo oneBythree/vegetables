@@ -83,10 +83,6 @@ export default {
     },
     ready: function() {},
     methods: {
-        closeDrop: function() {
-            this.selectDrop = false;
-            this.dropName = null;
-        },
         selectValue: function(event, key) {
             if (this.SelectDroped !== key) {
                 this.SelectDroped = key;
@@ -95,8 +91,10 @@ export default {
             this.dropName = null;
         },
         colseDrop: function() {
-            this.selectDrop = false;
-            this.dropName = null;
+            if (this.isType) {
+                this.selectDrop = false;
+                this.dropName = null;
+            }
         }
     },
     components: {
@@ -146,7 +144,7 @@ export default {
     background: #fff;
     padding: 0 .3rem;
     z-index: 2;
-    border-top:1px solid #e7e7e7;
+    border-top: 1px solid #e7e7e7;
 }
 
 .m-props-module a.item {
@@ -167,7 +165,7 @@ export default {
     background: #ebebeb;
 }
 
-.m-props-module.animated.m-drop-select-module{
+.m-props-module.animated.m-drop-select-module {
     -webkit-animation-duration: .5s;
     animation-duration: .5s;
 }

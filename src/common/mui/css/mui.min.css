@@ -1,10 +1,5 @@
-/*!
- * =====================================================
- * Mui v3.4.0 (http://dev.dcloud.net.cn/mui)
- * =====================================================
- */
-
-
+! *=====================================================* Mui v3.4.0 (http: //dev.dcloud.net.cn/mui)
+*=====================================================*/
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 
 html {
@@ -16,25 +11,11 @@ body {
     margin: 0
 }
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-nav,
-section,
-summary {
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
     display: block
 }
 
-audio,
-canvas,
-progress,
-video {
+audio, canvas, progress, video {
     display: inline-block;
     vertical-align: baseline
 }
@@ -44,8 +25,7 @@ audio:not([controls]) {
     height: 0
 }
 
-[hidden],
-template {
+[hidden], template {
     display: none
 }
 
@@ -53,8 +33,7 @@ a {
     background: 0 0
 }
 
-a:active,
-a:hover {
+a:active, a:hover {
     outline: 0
 }
 
@@ -62,8 +41,7 @@ abbr[title] {
     border-bottom: 1px dotted
 }
 
-b,
-strong {
+b, strong {
     font-weight: 700
 }
 
@@ -84,8 +62,7 @@ small {
     font-size: 80%
 }
 
-sub,
-sup {
+sub, sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
@@ -121,19 +98,12 @@ pre {
     overflow: auto
 }
 
-code,
-kbd,
-pre,
-samp {
+code, kbd, pre, samp {
     font-family: monospace, monospace;
     font-size: 1em
 }
 
-button,
-input,
-optgroup,
-select,
-textarea {
+button, input, optgroup, select, textarea {
     font: inherit;
     margin: 0;
     color: inherit
@@ -143,21 +113,16 @@ button {
     overflow: visible
 }
 
-button,
-select {
+button, select {
     text-transform: none
 }
 
-button,
-html input[type=button],
-input[type=reset],
-input[type=submit] {
+button, html input[type=button], input[type=reset], input[type=submit] {
     cursor: pointer;
     -webkit-appearance: button
 }
 
-button[disabled],
-html input[disabled] {
+button[disabled], html input[disabled] {
     cursor: default
 }
 
@@ -165,19 +130,16 @@ input {
     line-height: normal
 }
 
-input[type=checkbox],
-input[type=radio] {
+input[type=checkbox], input[type=radio] {
     box-sizing: border-box;
     padding: 0
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
     height: auto
 }
 
-input[type=search]::-webkit-search-cancel-button,
-input[type=search]::-webkit-search-decoration {
+input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
     -webkit-appearance: none
 }
 
@@ -205,8 +167,7 @@ table {
     border-collapse: collapse
 }
 
-td,
-th {
+td, th {
     padding: 0
 }
 
@@ -379,8 +340,7 @@ a:active {
     padding-left: 5px
 }
 
-.mui-clearfix:after,
-.mui-clearfix:before {
+.mui-clearfix:after, .mui-clearfix:before {
     display: table;
     content: ' '
 }
@@ -412,46 +372,35 @@ a:active {
     font-size: 15px
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-/*     line-height: 1;
+h1, h2, h3, h4, h5, h6 {
+    /*     line-height: 1;
     margin-top: 5px;
     margin-bottom: 5px */
 }
 
-.mui-h1,
-h1 {
+.mui-h1, h1 {
     font-size: 36px
 }
 
-.mui-h2,
-h2 {
+.mui-h2, h2 {
     font-size: 30px
 }
 
-.mui-h3,
-h3 {
+.mui-h3, h3 {
     font-size: 24px
 }
 
-.mui-h4,
-h4 {
+.mui-h4, h4 {
     font-size: 18px
 }
 
-.mui-h5,
-h5 {
+.mui-h5, h5 {
     font-size: 14px;
     font-weight: 400;
     color: #8f8f94
 }
 
-.mui-h6,
-h6 {
+.mui-h6, h6 {
     font-size: 12px;
     font-weight: 400;
     color: #8f8f94
@@ -464,8 +413,7 @@ p {
     color: #8f8f94
 }
 
-.mui-row:after,
-.mui-row:before {
+.mui-row:after, .mui-row:before {
     display: table;
     content: ' '
 }
@@ -474,30 +422,7 @@ p {
     clear: both
 }
 
-.mui-col-sm-1,
-.mui-col-sm-10,
-.mui-col-sm-11,
-.mui-col-sm-12,
-.mui-col-sm-2,
-.mui-col-sm-3,
-.mui-col-sm-4,
-.mui-col-sm-5,
-.mui-col-sm-6,
-.mui-col-sm-7,
-.mui-col-sm-8,
-.mui-col-sm-9,
-.mui-col-xs-1,
-.mui-col-xs-10,
-.mui-col-xs-11,
-.mui-col-xs-12,
-.mui-col-xs-2,
-.mui-col-xs-3,
-.mui-col-xs-4,
-.mui-col-xs-5,
-.mui-col-xs-6,
-.mui-col-xs-7,
-.mui-col-xs-8,
-.mui-col-xs-9 {
+.mui-col-sm-1, .mui-col-sm-10, .mui-col-sm-11, .mui-col-sm-12, .mui-col-sm-2, .mui-col-sm-3, .mui-col-sm-4, .mui-col-sm-5, .mui-col-sm-6, .mui-col-sm-7, .mui-col-sm-8, .mui-col-sm-9, .mui-col-xs-1, .mui-col-xs-10, .mui-col-xs-11, .mui-col-xs-12, .mui-col-xs-2, .mui-col-xs-3, .mui-col-xs-4, .mui-col-xs-5, .mui-col-xs-6, .mui-col-xs-7, .mui-col-xs-8, .mui-col-xs-9 {
     position: relative;
     min-height: 1px
 }
@@ -656,8 +581,7 @@ p {
     background: rgba(0, 0, 0, .39804)
 }
 
-.mui-plus-pullrefresh .mui-fullscreen .mui-scroll-wrapper .mui-scroll-wrapper,
-.mui-plus-pullrefresh .mui-fullscreen .mui-slider-group .mui-scroll-wrapper {
+.mui-plus-pullrefresh .mui-fullscreen .mui-scroll-wrapper .mui-scroll-wrapper, .mui-plus-pullrefresh .mui-fullscreen .mui-slider-group .mui-scroll-wrapper {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -666,14 +590,12 @@ p {
     width: 100%
 }
 
-.mui-plus-pullrefresh .mui-fullscreen .mui-scroll-wrapper .mui-scroll,
-.mui-plus-pullrefresh .mui-fullscreen .mui-slider-group .mui-scroll {
+.mui-plus-pullrefresh .mui-fullscreen .mui-scroll-wrapper .mui-scroll, .mui-plus-pullrefresh .mui-fullscreen .mui-slider-group .mui-scroll {
     position: absolute;
     width: 100%
 }
 
-.mui-plus-pullrefresh .mui-scroll-wrapper,
-.mui-plus-pullrefresh .mui-slider-group {
+.mui-plus-pullrefresh .mui-scroll-wrapper, .mui-plus-pullrefresh .mui-slider-group {
     position: static;
     top: auto;
     bottom: auto;
@@ -758,8 +680,7 @@ p {
     -webkit-transform: translate3d(-100%, 0, 0)
 }
 
-.mui-off-canvas-left,
-.mui-off-canvas-right {
+.mui-off-canvas-left, .mui-off-canvas-right {
     position: absolute;
     z-index: -1;
     top: 0;
@@ -772,8 +693,7 @@ p {
     -webkit-overflow-scrolling: touch
 }
 
-.mui-off-canvas-left.mui-transitioning,
-.mui-off-canvas-right.mui-transitioning {
+.mui-off-canvas-left.mui-transitioning, .mui-off-canvas-right.mui-transitioning {
     -webkit-transition: -webkit-transform 350ms cubic-bezier(.165, .84, .44, 1);
     transition: transform 350ms cubic-bezier(.165, .84, .44, 1)
 }
@@ -790,16 +710,14 @@ p {
     background-color: #333
 }
 
-.mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable>.mui-off-canvas-left,
-.mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable>.mui-off-canvas-right {
+.mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable>.mui-off-canvas-left, .mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable>.mui-off-canvas-right {
     width: 80%;
     -webkit-transform: scale(.8);
     transform: scale(.8);
     opacity: .1
 }
 
-.mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable>.mui-off-canvas-left.mui-transitioning,
-.mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable>.mui-off-canvas-right.mui-transitioning {
+.mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable>.mui-off-canvas-left.mui-transitioning, .mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable>.mui-off-canvas-right.mui-transitioning {
     -webkit-transition: -webkit-transform 350ms cubic-bezier(.165, .84, .44, 1), opacity 350ms cubic-bezier(.165, .84, .44, 1);
     transition: transform 350ms cubic-bezier(.165, .84, .44, 1), opacity 350ms cubic-bezier(.165, .84, .44, 1)
 }
@@ -819,8 +737,7 @@ p {
     transform: scale(.8)
 }
 
-.mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable.mui-active>.mui-off-canvas-left,
-.mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable.mui-active>.mui-off-canvas-right {
+.mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable.mui-active>.mui-off-canvas-left, .mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable.mui-active>.mui-off-canvas-right {
     -webkit-transform: scale(1);
     transform: scale(1);
     opacity: 1
@@ -2419,7 +2336,7 @@ input[type=url],
 input[type=week],
 select,
 textarea {
-/*     line-height: 21px;
+    /*     line-height: 21px;
     width: 100%;
     height: 40px;
     margin-bottom: 15px;
@@ -4670,3 +4587,17 @@ body>.mui-progressbar {
     border: 0
 }
 
+
+/*====================================*/
+
+
+/*mui 主题样式修改*/
+
+.mui-btn.mui-btn-blue {
+    background: #22ac38;
+    border-color: #22ac38;
+}
+
+.mui-btn.mui-btn-blue:active {
+    background: rgba(34, 172, 56, .5);
+}

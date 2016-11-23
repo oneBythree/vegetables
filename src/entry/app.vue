@@ -1,6 +1,5 @@
-
 <style>
-    @import '../sass/common.css';
+@import '../sass/common.css';
 </style>
 <template>
     <div>
@@ -8,18 +7,20 @@
     </div>
 </template>
 <script>
-    export default {
-        data () {
-            return {}
+export default {
+    data() {
+            return {
+                routeList: []
+            }
         },
-        ready () {
+        ready() {
 
         },
-        beforeDestroy () {
+        beforeDestroy() {
 
         },
         methods: {
 
         }
-    }
+}
 </script>
