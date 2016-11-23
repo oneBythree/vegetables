@@ -11,7 +11,7 @@
         </div>
         <div v-else>
             <header class="m-header">
-                <a href="javascript:;" class="left-icon" @click="colseDrop">
+                <a href="javascript:;" class="left-icon" @click="backDrop">
                     <i class="iconfont icon-close"></i>
                 </a>
                 <h1>{{headerTitle}}</h1>
@@ -92,9 +92,12 @@ export default {
         },
         colseDrop: function() {
             if (this.isType) {
-                this.selectDrop = false;
-                this.dropName = null;
+                this.backDrop();
             }
+        },
+        backDrop: function() {
+            this.selectDrop = false;
+            this.dropName = null;
         }
     },
     components: {

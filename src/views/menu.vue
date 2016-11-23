@@ -1,6 +1,6 @@
 <template>
     <header class="m-header">
-        <a href="javascript:;" class="left-icon">
+        <a href="/login" class="left-icon">
             <i class="iconfont icon-back"></i>
         </a>
         <h1>肉菜追溯系统</h1>

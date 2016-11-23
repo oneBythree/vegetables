@@ -1,6 +1,6 @@
 <template>
     <header class="m-header">
-        <a href="javascript:;" class="left-icon iconfont icon-back">
+        <a href="/menu" class="left-icon iconfont icon-back">
         </a>
         <a href="javascript:;" class="right-icon iconfont icon-more r-meun-drop" @click="moreMenu">
         </a>
@@ -30,82 +30,34 @@
                 </div>
             </form>
         </drop-select>
-        <!--         <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
-            <div class="mui-scroll">
+<!--         <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+            <div class="mui-scroll"> -->
                 <card-item v-for="come in comes">
                     <dt>
                         <strong>供应商</strong>
-                        <span>{{come.CZR_MC.value}}</span>
+                        <span>{{come.tds.SUPPLIER_NAME.value}}</span>
                     </dt>
                     <dd class="g-table-fix">
                         <div class="g-cell">
                             <strong>车牌号</strong>
-                            <span>{{come.TRANSPORTER_ID.value}}</span>
+                            <span>{{come.tds.MATTER_ID.value}}</span>
                         </div>
                         <div class="g-cell">
                             <strong>总重量</strong>
-                            <span>{{come.WEIGHT.value}}</span>
+                            <span>{{come.tds.MATTER_NAME.value}}</span>
                         </div>
                     </dd>
                     <dd>
                         <strong>产地</strong>
-                        <span>{{come.AREA_ORIGIN_NAME.value}}</span>
+                        <span>{{come.tds.AREA_ORIGIN_NAME.value}}</span>
                     </dd>
                     <dt>
                         <strong>进场日期</strong>
-                        <span>{{come.IN_DATE.value}}</span>
+                        <span>{{come.tds.IN_DATE.value}}</span>
                     </dt>
                 </card-item>
-            </div>
+<!--             </div>
         </div> -->
-        <dl class="g-list r-list m-border">
-            <dt>
-                <strong>供应商</strong>
-                <span>北京蓝波绿农科技有限公司</span>
-            </dt>
-            <dd class="g-table-fix">
-                <div class="g-cell">
-                    <strong>车牌号</strong>
-                    <span>京AL5938</span>
-                </div>
-                <div class="g-cell">
-                    <strong>总重量</strong>
-                    <span>200.00</span>
-                </div>
-            </dd>
-            <dd>
-                <strong>产地</strong>
-                <span>上海市奉贤区海湾镇</span>
-            </dd>
-            <dt>
-                <strong>进场日期</strong>
-                <span>2016-11-16</span>
-            </dt>
-        </dl>
-        <dl class="g-list r-list m-border-tb">
-            <dt>
-                <strong>供应商</strong>
-                <span>北京蓝波绿农科技有限公司</span>
-            </dt>
-            <dd class="g-table-fix">
-                <div class="g-cell">
-                    <strong>车牌号</strong>
-                    <span>京AL5938</span>
-                </div>
-                <div class="g-cell">
-                    <strong>总重量</strong>
-                    <span>200.00</span>
-                </div>
-            </dd>
-            <dd>
-                <strong>产地</strong>
-                <span>上海市奉贤区海湾镇</span>
-            </dd>
-            <dt>
-                <strong>进场日期</strong>
-                <span>2016-11-16</span>
-            </dt>
-        </dl>
     </div>
 </template>
 <script>
@@ -162,12 +114,6 @@ export default {
                 comes: []
             }
         },
-        route: {
-            // data: function(transition) {
-            //     var _self = this;
-            //     _self.getAjaxData(transition);
-            // }
-        },
         ready() {
             mui.init();
             this.getAjaxData();
@@ -183,7 +129,6 @@ export default {
             },
             //点击展示 悬浮菜单
             moreMenu: function() {
-                console.log(this.isMenu)
                 if (this.isMenu == false) {
                     this.isMenu = true;
                 } else {
@@ -197,13 +142,11 @@ export default {
                     beginYear: 2012,
                     endYear: 2020
                 };
-                console.log(type == 'start')
                 if (type == 'start') {
                     var picker1 = new mui.DtPicker(param);
                     picker1.show(function(rs) {
                         that.starTime = rs.value;
                     })
-
                 } else {
                     if (that.starTime == null) {
                         mui.toast('请选择开始时间');
@@ -218,18 +161,23 @@ export default {
 
             },
             getAjaxData: function() {
+                var that = this;
+                // that.$http.get(configPath + 'testList.js')
+                //     .then(function(data){
+                //         console.info(data.data)
+                //       //  that.comes = data.data;
+
+                //     }),
+                //     function(data){
+                //         console.log(data.data);
+                //     }
                 $.ajax({
                     type: "GET",
-                    url: '../api/comeList.json',
+                    url: configPath + 'testList.js',
                     dataType: "json",
                     success: function(json) {
-                        //请求完毕关闭进度条
-                        _self.$route.router.app.progressbar = false;
-                        if (json && json.code == 0) {
-                            transition.next({
-                                list: json.data.cartlist
-                            });
-                        }
+                        console.log(json.data[1].trs)
+                        that.comes = json.data[1].trs;
                     }
                 });
             }

@@ -16,9 +16,9 @@
 
 </style>
 <script type="text/javascript">
-import '../common/mui.js'
-import '../common/mui/mui.picker.js'
-import '../common/mui/mui.dtpicker.js'
+import '../common/mui.js';
+import '../common/mui/mui.picker.js';
+import '../common/mui/mui.dtpicker.js';
 export default {
     data() {
             return {
