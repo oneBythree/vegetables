@@ -3168,7 +3168,7 @@ select:focus {
     left: 50%;
     display: none;
     overflow: hidden;
-    width: 270px;
+    width:2.7rem;
     -webkit-transition-property: -webkit-transform, opacity;
     transition-property: transform, opacity;
     -webkit-transform: translate3d(-50%, -50%, 0) scale(1.185);
@@ -4003,14 +4003,14 @@ body>.mui-progressbar {
 }
 
 .mui-toast-message {
-    font-size: 14px;
-    width: 270px;
-    margin: 5px auto;
-    padding: 5px;
+    font-size: .3rem;
+    width:2.7rem;
+    margin: .25rem auto;
+    padding: .25rem;
     text-align: center;
-    color: #000;
+    color: #fff;
     border-radius: 7px;
-    background-color: #d8d8d8
+    background-color: rgba(0, 0, 0, .6)
 }
 
 .mui-numbox {

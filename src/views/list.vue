@@ -1,65 +1,59 @@
 <template>
-<!--     <header class="m-header">
-        <a href="/menu" class="left-icon iconfont icon-back">
-        </a>
-        <a href="javascript:;" class="right-icon iconfont icon-more" @click="moreMenu">
-        </a>
-        <h1>蔬菜进场</h1>
-    </header> -->
-    <v-header :header-title="haedertitle" :right-icon="rightIcon" @right-action="moreMenu"></v-header>
-    <!-- 悬浮菜单start -->
-    <menu-drop :is-menu.sync="isMenu" :menu-datas="menuDatas" @meu-select-click="meuSelectClick"></menu-drop>
-    <!-- 悬浮菜单end -->
-
-    <div class="m-content">
-        <!-- 搜索tab选项卡 start-->
-        <nav-bar :items="items" :selected.sync="selected"></nav-bar>
-        <!-- 搜索tab选项卡 end-->
-        <drop-select :type-name="typeName1" :my-drop-name="myDropName1" :drop-name.sync="selected" :droplists="droplists" @drop-select-item="dropSelectItem" :select-droped.sync="isSelectDrop1"></drop-select>
-        <drop-select :type-name="typeName2" :my-drop-name="myDropName2" :drop-name.sync="selected" :droplists="droplists" @drop-select-item="dropSelectItem" :select-droped.sync="isSelectDrop2"></drop-select>
-        <drop-select :type-name="typeName3" :header-title="headerTitle" :my-drop-name="myDropName3" :drop-name.sync="selected" :select-droped.sync="isSelectDrop3" :transition="transition">
-            <form class="r-timer-filter">
-                <div class="m-flex-box ">
-                    <label>开始时间</label>
-                    <input class="m-flex-1" v-model="starTime" type="text" readonly="" @click="dateTimer('start')">
-                </div>
-                <div class="m-flex-box">
-                    <label>结束时间</label>
-                    <input class="m-flex-1" v-model="endTime" type="text" readonly="" @click="dateTimer('end')">
-                </div>
-                <div class="m-flex-box r-submit">
-                    <a href="javascript:;" class="r-button">确认搜索</a>
-                </div>
-            </form>
-        </drop-select>
-        <!--         <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+    <div>
+        <v-header :header-title="haedertitle" :right-icon="rightIcon" @right-action="moreMenu" @left-action="goBack"></v-header>
+        <!-- 悬浮菜单start -->
+        <menu-drop :is-menu.sync="isMenu" :menu-datas="menuDatas" @meu-select-click="meuSelectClick"></menu-drop>
+        <!-- 悬浮菜单end -->
+        <div class="m-content">
+            <!-- 搜索tab选项卡 start-->
+            <nav-bar :items="items" :selected.sync="selected"></nav-bar>
+            <!-- 搜索tab选项卡 end-->
+            <drop-select :type-name="typeName1" :my-drop-name="myDropName1" :drop-name.sync="selected" :droplists="droplists" @drop-select-item="dropSelectItem" :select-droped.sync="isSelectDrop1"></drop-select>
+            <drop-select :type-name="typeName2" :my-drop-name="myDropName2" :drop-name.sync="selected" :droplists="droplists" @drop-select-item="dropSelectItem" :select-droped.sync="isSelectDrop2"></drop-select>
+            <drop-select :type-name="typeName3" :header-title="headerTitle" :my-drop-name="myDropName3" :drop-name.sync="selected" :select-droped.sync="isSelectDrop3" :transition="transitionDrop">
+                <form class="r-timer-filter">
+                    <div class="m-flex-box ">
+                        <label>开始时间</label>
+                        <input class="m-flex-1" v-model="starTime" type="text" readonly="" @click="dateTimer('start')">
+                    </div>
+                    <div class="m-flex-box">
+                        <label>结束时间</label>
+                        <input class="m-flex-1" v-model="endTime" type="text" readonly="" @click="dateTimer('end')">
+                    </div>
+                    <div class="m-flex-box r-submit">
+                        <a href="javascript:;" class="r-button">确认搜索</a>
+                    </div>
+                </form>
+            </drop-select>
+            <!--         <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
             <div class="mui-scroll"> -->
-        <card-item v-for="come in comes">
-            <dt>
-                <strong>供应商</strong>
-                <span>{{come.tds.GYS_MC.value}}</span>
-            </dt>
-            <dd class="g-table-fix">
-                <div class="g-cell">
-                    <strong>车牌号</strong>
-                    <span>{{come.tds.TRANSPORTER_ID.value}}</span>
-                </div>
-                <div class="g-cell">
-                    <strong>总重量</strong>
-                    <span>{{come.tds.WEIGHT.value}}</span>
-                </div>
-            </dd>
-            <dd>
-                <strong>产地</strong>
-                <span>{{come.tds.AREA_ORIGIN_NAME.value}}</span>
-            </dd>
-            <dt>
-                <strong>进场日期</strong>
-                <span>{{come.tds.IN_DATE.value}}</span>
-            </dt>
-        </card-item>
-        <!--             </div>
+            <card-item v-for="come in comes">
+                <dt>
+                    <strong>供应商</strong>
+                    <span>{{come.tds.GYS_MC.value}}</span>
+                </dt>
+                <dd class="g-table-fix">
+                    <div class="g-cell">
+                        <strong>车牌号</strong>
+                        <span>{{come.tds.TRANSPORTER_ID.value}}</span>
+                    </div>
+                    <div class="g-cell">
+                        <strong>总重量</strong>
+                        <span>{{come.tds.WEIGHT.value}}</span>
+                    </div>
+                </dd>
+                <dd>
+                    <strong>产地</strong>
+                    <span>{{come.tds.AREA_ORIGIN_NAME.value}}</span>
+                </dd>
+                <dt>
+                    <strong>进场日期</strong>
+                    <span>{{come.tds.IN_DATE.value}}</span>
+                </dt>
+            </card-item>
+            <!--             </div>
         </div> -->
+        </div>
     </div>
 </template>
 <script>
@@ -72,8 +66,8 @@ import CardItem from '../components/card/card-item.vue';
 export default {
     data() {
             return {
-                haedertitle:'蔬菜进场列表',
-                rightIcon:'icon-more',
+                haedertitle: '蔬菜进场列表',
+                rightIcon: 'icon-more',
                 menuDatas: [{
                     'key': 'add',
                     'text': '添加',
@@ -112,7 +106,7 @@ export default {
                 typeName2: 'unGreenAll',
                 typeName3: 'GreenAll',
                 headerTitle: '时间筛选',
-                transition: 'right',
+                transitionDrop: 'right',
                 isMenu: false,
                 starTime: null,
                 endTime: null,
@@ -157,25 +151,15 @@ export default {
                         mui.toast('请选择开始时间');
                         return false;
                     }
+                    param.beginDate = new Date(that.starTime);
                     var picker2 = new mui.DtPicker(param);
                     picker2.show(function(rs) {
                         that.endTime = rs.value;
                     })
-
                 }
-
             },
             getAjaxData: function() {
                 var that = this;
-                // that.$http.get(configPath + 'testList.js')
-                //     .then(function(data){
-                //         console.info(data.data)
-                //       //  that.comes = data.data;
-
-                //     }),
-                //     function(data){
-                //         console.log(data.data);
-                //     }
                 $.ajax({
                     type: "GET",
                     url: configPath + 'comeList.json',
@@ -185,6 +169,9 @@ export default {
                         that.comes = json.data[1].trs;
                     }
                 });
+            },
+            goBack: function() {
+                history.go(-1);
             }
         },
         components: {
