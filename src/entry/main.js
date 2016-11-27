@@ -27,6 +27,10 @@ Vue.transition('down', {
     enterClass: 'fadeIn',
     leaveClass: 'fadeOut'
 });
+Vue.transition('fade', {
+    enterClass: 'zoomInDown',
+    leaveClass: 'zoomOutUp'
+});
 
 /**模拟数据 start**/
 const configPath = '../../src/api/';

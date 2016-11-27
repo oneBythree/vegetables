@@ -59,6 +59,7 @@ export default {
             default: 'down'
         }
     },
+
     computed: {
         selectDrop: function() {
             return this.myDropName === this.dropName ? true : false;

@@ -1,12 +1,32 @@
+<style type="text/css">
+</style>
 <template>
     <div>
-        <v-header :header-title="haedertitle" :right-icon="rightIcon" @right-action="moreMenu" @left-action="goBack"></v-header>
+        <!-- 头部 -->
+        <v-header :header-title="haedertitle" :right-icon="rightIcon" @right-action="moreMenu" @left-action="goBack" :is-right-text="isRightText">
+            <span @click.stop="cancelDel">完成</span>
+        </v-header>
+        <!-- 页眉 -->
+        <v-footer :is-footer="isFooter">
+            <div class="g-cell  left">
+                <label @click="checkAll">
+                    <span class="radio-check" :class="{ 'active':delCheck}">
+                        <i  v-if="delCheck" class="iconfont icon-right"></i>
+                    </span>
+                    <span>删除</span>
+                    <em>({{delAarrayId.length}})</em>
+                </label>
+            </div>
+            <div class="g-cell right">
+                <a href="javascript:;" class="right-btn">确认</a>
+            </div>
+        </v-footer>
         <!-- 悬浮菜单start -->
         <menu-drop :is-menu.sync="isMenu" :menu-datas="menuDatas" @meu-select-click="meuSelectClick"></menu-drop>
         <!-- 悬浮菜单end -->
         <div class="m-content">
             <!-- 搜索tab选项卡 start-->
-            <nav-bar :items="items" :selected.sync="selected"></nav-bar>
+            <nav-bar :items="items" :selected.sync="selected" v-if="isShowTab"></nav-bar>
             <!-- 搜索tab选项卡 end-->
             <drop-select :type-name="typeName1" :my-drop-name="myDropName1" :drop-name.sync="selected" :droplists="droplists" @drop-select-item="dropSelectItem" :select-droped.sync="isSelectDrop1"></drop-select>
             <drop-select :type-name="typeName2" :my-drop-name="myDropName2" :drop-name.sync="selected" :droplists="droplists" @drop-select-item="dropSelectItem" :select-droped.sync="isSelectDrop2"></drop-select>
@@ -25,9 +45,9 @@
                     </div>
                 </form>
             </drop-select>
-            <!--         <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+            <!--         <div id="pullrefresh" class="mui-content mui-scroll-wrappe r" del-item-click'>
             <div class="mui-scroll"> -->
-            <card-item v-for="come in comes">
+            <card-item v-for="come in comes" :is-del="isDel" :del-check="delCheck" @default-item-click="defaultItemClick" @del-item-click="delItemClick(come.tds.BATCH_ID.value)">
                 <dt>
                     <strong>供应商</strong>
                     <span>{{come.tds.GYS_MC.value}}</span>
@@ -57,18 +77,24 @@
     </div>
 </template>
 <script>
+import * as tool from '../common/common.js';
 import VHeader from '../components/header/header.vue';
+import VFooter from '../components/footer/footer.vue';
 import MenuDrop from '../components/menu-drop/menu-drop.vue';
 import NavBar from '../components/nav.vue';
 import DropSelect from '../components/drop-select.vue';
 import DatePicker from '../components/date-picker.vue';
 import CardItem from '../components/card/card-item.vue';
+console.log()
 export default {
     data() {
             return {
                 haedertitle: '蔬菜进场列表',
-                rightIcon: 'icon-more',
-                menuDatas: [{
+                rightIcon: 'icon-more', //右边按钮 图标
+                isFooter: false,
+                isShowTab: true, //tab是否显示
+                delCheck: false, //是否选中删除
+                menuDatas: [{ // 悬浮按钮初始数据
                     'key': 'add',
                     'text': '添加',
                     'icon': 'icon-add'
@@ -110,7 +136,10 @@ export default {
                 isMenu: false,
                 starTime: null,
                 endTime: null,
-                comes: []
+                comes: [],
+                isRightText: false,
+                isDel: false,
+                delAarrayId: [],
             }
         },
         ready() {
@@ -121,9 +150,48 @@ export default {
             dropSelectItem: function(key) {
                 console.log(key);
             },
-            meuSelectClick: function(key) {
+            meuSelectClick: function(key) { //悬浮菜单选择
                 if (key === 'add') {
                     this.$router.go('/add');
+                } else if (key === 'del') {
+                    this.isRightText = true; // 右边文本显示
+                    this.rightIcon = 'temp'; // 图标 至空
+                    this.isShowTab = false; // tab 隐藏
+                    this.isDel = true; // item 显示删除样式
+                    this.isFooter = true;
+                }
+            },
+            cancelDel: function() {
+                this.isRightText = false;
+                this.rightIcon = 'icon-more';
+                this.isShowTab = true;
+                this.isDel = false;
+                this.delCheck = false;
+                this.delAarrayId = [];
+                this.isFooter = false;
+            },
+            defaultItemClick: function(key, event) {
+                console.log(event)
+            },
+            delItemClick: function(key) {
+                if ($(event.target).parents('dl').attr('data-check') == undefined) {
+                    this.delAarrayId.push(key);
+                    this.delAarrayId = tool.uique(this.delAarrayId)
+                } else {
+                    tool.remove(this.delAarrayId, key);
+                }
+            },
+            checkAll: function() { //选择全部
+                this.delCheck = !!this.delCheck ? false : true;
+                var that = this;
+                if (this.delCheck) {
+                    var lists = this.comes;
+                    lists.map(function(come) {
+                        that.delAarrayId.push(come.tds.BATCH_ID.value)
+                    })
+                     this.delAarrayId = tool.uique(this.delAarrayId)
+                } else {
+                    that.delAarrayId = [];
                 }
             },
             //点击展示 悬浮菜单
@@ -174,8 +242,16 @@ export default {
                 history.go(-1);
             }
         },
+        watch: {
+            delAarrayId: function(cur) { //如果数组等于获取数据长度？ 全选：不全选
+                if (cur.length == this.comes.length) {
+                    this.delCheck = true;
+                }
+            }
+        },
         components: {
             VHeader,
+            VFooter,
             NavBar,
             MenuDrop,
             DropSelect,

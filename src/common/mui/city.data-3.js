@@ -1,4 +1,4 @@
-var cityData3 = [{
+export  var cityData3 = [{
 	value: '110000',
 	text: '北京市',
 	children: [{

@@ -2307,7 +2307,7 @@ input,
 select,
 textarea {
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
-    font-size: 17px;
+    /* font-size: 17px; */
     -webkit-tap-highlight-color: transparent;
     -webkit-tap-highlight-color: transparent
 }
@@ -4004,7 +4004,7 @@ body>.mui-progressbar {
 
 .mui-toast-message {
     font-size: .3rem;
-    width:2.7rem;
+    max-width:3.2rem;
     margin: .25rem auto;
     padding: .25rem;
     text-align: center;

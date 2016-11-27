@@ -19,6 +19,9 @@ body {
 header.m-header~div.m-content {
     padding-top: .88rem;
 }
+footer.m-footer~div.m-content {
+    padding-bottom: .88rem;
+}
 
 div.m-content {
     position: relative;
@@ -47,7 +50,7 @@ header.m-header h1 {
     color: #fff;
     text-align: center;
     font-weight: normal;
-    font-size: .3rem;
+    font-size: .32rem;
 }
 
 header.m-header .left-icon {
@@ -176,5 +179,142 @@ ul.m-menu-drop li:active {
 }
 
 ul.m-menu-drop li .iconfont {
+    font-size: .3rem;
+}
+
+/* footer' */
+footer.m-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background: #fff;
+    height: .88rem;
+    line-height: .88rem;
+    width: 100%;
+    font-size: .32rem;
+    z-index: 999;
+    border-top: #ececec;
+    box-shadow: #ececec 0px 0px 4px;
+    font-size: .32rem;
+}
+
+footer.m-footer span,
+footer.m-footer em {
+    vertical-align: middle;
+}
+
+footer.m-footer .radio-check {
+    display: inline-block;
+    width: .5rem;
+    height: .5rem;
+    line-height: .5rem;
+    border-radius: 50%;
+    border: 1px solid #22ac38;
+    line-height: .5rem;
+    text-align: center;
+}
+
+footer.m-footer .radio-check.active {
+    color: #22ac38;
+}
+
+footer.m-footer .left {
+    padding-left: .3rem;
+    color: #22ac38;
+}
+
+footer.m-footer .right {
+    text-align: right;
+}
+
+footer.m-footer .right-btn {
+    display: inline-block;
+    width: 1.2rem;
+    height: .88rem;
+    line-height: .88rem;
+    background: #22ac38;
+    text-align: center;
+    color: #fff;
+}
+
+/* 表单 */
+.m-form {
+    background: #fff;
+}
+
+.m-form-group {
+    display: flex;
+    font-size: .3rem;
+    padding: .2rem .3rem;
+    border-bottom: 1px solid #ececec;
+}
+
+.m-form-group em.red {
+    color: #d8001a;
+    vertical-align: middle;
+}
+
+.m-list-drop .m-form-group {
+    border: none;
+    padding: 0 .3rem;
+}
+
+.iconfont.icon-filter-down {
+    transform: rotate(0deg);
+    transition: .3s ease-in;
+}
+
+.iconfont.icon-filter-down.active {
+    transform: rotate(180deg);
+    transition: .3s ease-in;
+}
+
+.m-list-drop {
+    border-bottom: 1px solid #ececec;
+}
+
+.m-list-drop .radio-line {
+    display: block;
+    border-bottom: 1px solid #ececec;
+    padding: .2rem 0;
+    width: 100%;
+}
+
+.m-list-drop .radio-line input[type="radio"],
+.m-list-drop .radio-line span {
+    vertical-align: middle;
+}
+
+.m-list-drop .m-form-group:last-of-type .radio-line {
+    border: none;
+}
+
+.m-form-group span.lable {
+    display: inline-block;
+    width: 1.8rem;
+    white-space: nowrap;
+}
+
+.m-form-group label.flex2 {
+    flex: 1;
+}
+
+.m-form-group label.flex2>input {
+    width: 100%;
+    overflow: hidden;
+}
+
+.m-form-group span.right-more {
+    display: inline-block;
+    width: .5rem;
+    text-align: center;
+}
+
+.m-pull-right {
+    text-align: right;
+}
+
+.flex2.m-pull-right .iconfont {
+    color: #22ac38;
     font-size: .3rem;
 }
