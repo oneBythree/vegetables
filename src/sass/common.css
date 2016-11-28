@@ -19,6 +19,7 @@ body {
 header.m-header~div.m-content {
     padding-top: .88rem;
 }
+
 footer.m-footer~div.m-content {
     padding-bottom: .88rem;
 }
@@ -182,7 +183,9 @@ ul.m-menu-drop li .iconfont {
     font-size: .3rem;
 }
 
+
 /* footer' */
+
 footer.m-footer {
     position: fixed;
     left: 0;
@@ -210,7 +213,6 @@ footer.m-footer .radio-check {
     line-height: .5rem;
     border-radius: 50%;
     border: 1px solid #22ac38;
-    line-height: .5rem;
     text-align: center;
 }
 
@@ -237,7 +239,9 @@ footer.m-footer .right-btn {
     color: #fff;
 }
 
+
 /* 表单 */
+
 .m-form {
     background: #fff;
 }
@@ -317,4 +321,66 @@ footer.m-footer .right-btn {
 .flex2.m-pull-right .iconfont {
     color: #22ac38;
     font-size: .3rem;
+}
+
+
+/* 上拉控件 */
+
+.m-silder {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    max-height: 75%;
+    background: #fff;
+    z-index: 1001;
+}
+
+.m-silder .close {
+    height: .6rem;
+    line-height: .6rem;
+    text-align: right;
+    padding: 0 .3rem;
+}
+
+.m-silder .close>.btn {
+    display: inline-block;
+    width: .4rem;
+    height: .4rem;
+    line-height: .4rem;
+    border-radius: 50%;
+    border: 1px solid #7c7c7c;
+    vertical-align: middle;
+    text-align: center;
+    color: #7c7c7c;
+}
+
+.m-silder .close>.btn>.iconfont {
+    font-size: .24rem;
+}
+
+.m-silder p.title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2.8rem;
+    margin-top: -.3rem;
+    margin-left: -1.4rem;
+    font-size: .32rem;
+    line-height: .6rem;
+    color: #777;
+    text-align: center;
+    color: #22ac38;
+    background: #fff;
+    border-radius: .3rem;
+}
+
+.m-silder .footer {
+    height: .8rem;
+    line-height: .8rem;
+    color: #fff;
+    background: #22ac38;
+    font-size: .3rem;
+    text-align: center;
+    margin-top: .5rem;
 }
