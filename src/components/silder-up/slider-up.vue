@@ -5,7 +5,7 @@
         </p>
         <div class="close">
             <span class="btn">
-                        <i class="iconfont icon-close" @click="closeSilder"></i>
+                <i class="iconfont icon-close" @click="closeSilder"></i>
              </span>
         </div>
         <slot></slot>

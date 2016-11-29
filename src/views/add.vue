@@ -60,7 +60,11 @@ export default {
                 isFooter: true,
                 isSilder: false, //上拉组件
                 silderTitle: '添加明细',
-                info: null
+                info: {
+                    type: null,
+                    weight: null,
+                    money: null
+                }
             }
         },
         ready: function() {
@@ -68,7 +72,7 @@ export default {
         },
         methods: {
             goBack: function() {
-
+                // histroy.go(-1);
             },
             addInfoRouter: function() {
                 this.toggleCome = false;
