@@ -1,5 +1,5 @@
 <template>
-    <div class="m-silder" v-if="isSilder" transition="down">
+    <div class="m-silder animated" v-if="isSilder" transition="fadeUp">
         <p class="title" v-if="isTitle">
             {{silderTitle}}
         </p>

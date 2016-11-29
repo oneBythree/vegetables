@@ -11,8 +11,10 @@ import App from './app.vue';
 import Routers from './router';
 import Env from '../config/env';
 
+
 Vue.use(VueRouter); // 引入路由
 Vue.use(VueResource); // 引入 vue-resource
+Vue.http.options.emulateJSON = true;
 
 /*animate动画**/
 Vue.transition('right', {
@@ -27,10 +29,16 @@ Vue.transition('down', {
     enterClass: 'fadeIn',
     leaveClass: 'fadeOut'
 });
+
 Vue.transition('fade', {
     enterClass: 'zoomInDown',
     leaveClass: 'zoomOutUp'
 });
+
+Vue.transition('fadeUp', {
+    enterClass: 'fadeInUpBig',
+    leaveClass: 'fadeOutDownBig'
+})
 
 /**模拟数据 start**/
 const configPath = '../../src/api/';

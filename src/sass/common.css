@@ -215,7 +215,9 @@ footer.m-footer .radio-check {
     border: 1px solid #22ac38;
     text-align: center;
 }
-
+footer.m-footer .radio-check>i.iconfont{
+    font-size: .3rem;
+}
 footer.m-footer .radio-check.active {
     color: #22ac38;
 }
@@ -244,6 +246,7 @@ footer.m-footer .right-btn {
 
 .m-form {
     background: #fff;
+    font-size: .3rem;
 }
 
 .m-form-group {
@@ -296,11 +299,13 @@ footer.m-footer .right-btn {
 .m-form-group span.lable {
     display: inline-block;
     width: 1.8rem;
+    vertical-align: middle;
     white-space: nowrap;
 }
 
 .m-form-group label.flex2 {
     flex: 1;
+    vertical-align: middle;
 }
 
 .m-form-group label.flex2>input {
@@ -312,6 +317,8 @@ footer.m-footer .right-btn {
     display: inline-block;
     width: .5rem;
     text-align: center;
+    font-size: .3rem;
+    vertical-align: middle;
 }
 
 .m-pull-right {

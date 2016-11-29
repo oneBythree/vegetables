@@ -79,6 +79,7 @@ export default {
                 console.log(this.comesData);
             },
             showSilder: function() {
+                
                 this.isSilder = true;
             }
         },
