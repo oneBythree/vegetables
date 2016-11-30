@@ -20,7 +20,8 @@
         </v-footer>
         <div class="m-content">
             <form class="m-form">
-                <v-come @add-info="addInfoRouter" v-if="toggleCome" :comes-data.sync="comesData"></v-come>
+                <v-come :comes-data.sync="comesData"
+                        ></v-come>
             </form>
         </div>
         <silder-up :is-silder.sync="isSilder" :silder-title="silderTitle">
@@ -55,7 +56,6 @@ export default {
     data() {
             return {
                 haedertitle: '添加进场',
-                toggleCome: true,
                 comesData: null,
                 isFooter: true,
                 isSilder: false, //上拉组件
@@ -79,7 +79,7 @@ export default {
                 console.log(this.comesData);
             },
             showSilder: function() {
-                
+                console.log(this.comesData)
                 this.isSilder = true;
             }
         },

@@ -92,7 +92,30 @@ export default {
             address: null,
             addressValue: null,
             carsNum: null,
-            comesData: null,
+            comesData: {
+                type: Object,
+                require: true,
+                default: {
+                    GYS_MC: {
+                        value: null
+                    },
+                    IN_DATE: {
+                        value: null
+                    },
+                    AREA_ORIGIN_NAME: {
+                        value: null
+                    },
+                    TRANSPORTER_ID: {
+                        value: null
+                    },
+                    WEIGHT: {
+                        value: null,
+                    },
+                    SUPPLIER_NAME: {
+                        value: null
+                    }
+                }
+            },
             weight: null,
             supplier: null,
             transporter: null,
@@ -150,7 +173,6 @@ export default {
             showSupplier: function() { //显示供货商
                 var that = this;
                 supplierPicker.show(function(item) {
-                    console.log(item[0].text)
                     that.supplier = item[0].text
                 })
             },
@@ -198,7 +220,30 @@ export default {
         },
         computed: {
             transporter: function() {
-                return this.plate + this.carsNum.toUpperCase();
+                return this.plate + this.carsNum;
+            },
+            comesData: function() {
+                var ss = {
+                    GYS_MC: {
+                        value: this.rc
+                    },
+                    IN_DATE: {
+                        value: this.time
+                    },
+                    AREA_ORIGIN_NAME: {
+                        value: this.address
+                    },
+                    TRANSPORTER_ID: {
+                        value: this.transporter
+                    },
+                    WEIGHT: {
+                        value: this.weight,
+                    },
+                    SUPPLIER_NAME: {
+                        value: this.supplier
+                    }
+                }
+                return ss;
             }
         },
         components: {
