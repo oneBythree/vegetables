@@ -34,7 +34,7 @@
     </div>
     <div class="m-form-group m-diff">
         <span class="lable">运输车牌号<em class="red">*</em></span>
-        <span class="check-span" @click="showPlate">{{plate}}</span>
+        <span class="check-span" @click="showPlate">{{plate==null?"车牌":plate}}</span>
         <label class="flex2 ">
             <input type="text" v-model="carsNum" maxlength="5">
         </label>
@@ -80,11 +80,6 @@ platePicker = new mui.PopPicker({
 })
 platePicker.setData(plateData.plateData);
 export default {
-    data() {
-            return {
-
-            }
-        },
         props: {
             isRadios: false,
             rc: null,
@@ -177,45 +172,6 @@ export default {
                 })
             },
             conserveComeData: function() { //保存进场数据
-                if (this.rc == null) {
-                    mui.toast('供应商不能为空！');
-                    return false
-                }
-
-                if (this.time == null) {
-                    mui.toast('进场日期不能为空!');
-                    return false
-                }
-
-                if (this.address == null) {
-                    mui.toast('产地不能为空！');
-                    return false
-                }
-
-                if (this.plate == '车牌') {
-                    mui.toast('请选择车牌归属地！');
-                    return false;
-                }
-
-                if (this.carsNum == null) {
-                    mui.toast('运输车牌不能为空!');
-                    return false
-                } else if (this.carsNum.test('/^[A-Z_a-z_0-9]{5}$/')) {
-                    mui.toast('运输车牌格式不正确!');
-                }
-
-                if (this.supplier == null) {
-                    mui.toast('供货单位不能为空！');
-                    return false
-                }
-                this.comesData = {
-                    'gys': this.rc,
-                    'date': this.time,
-                    'address': this.addressValue,
-                    'transporter': this.transporter,
-                    'weight': this.weight
-                }
-                this.$dispatch('add-info')
             }
         },
         computed: {
@@ -223,7 +179,7 @@ export default {
                 return this.plate + this.carsNum;
             },
             comesData: function() {
-                var ss = {
+                return {
                     GYS_MC: {
                         value: this.rc
                     },
@@ -243,7 +199,6 @@ export default {
                         value: this.supplier
                     }
                 }
-                return ss;
             }
         },
         components: {
