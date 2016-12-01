@@ -23,5 +23,10 @@ const routers = {
             require(['../views/add.vue'], resolve);
         }
     },
+    'search': {
+        component(resolve) {
+            require(['../views/search.vue'], resolve);
+        }
+    },
 };
 export default routers;

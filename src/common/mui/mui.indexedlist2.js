@@ -46,13 +46,15 @@
 			self.el.barItems = [].slice.call(self.box.querySelectorAll(classSelector('indexed-list-bar') + ' a'));
 			self.el.inner = self.box.querySelector(classSelector('indexed-list-inner'));
 			self.el.items = [].slice.call(self.box.querySelectorAll(classSelector('indexed-list-item')));
-			self.el.liArray = [].slice.call(self.box.querySelectorAll(classSelector('indexed-list-inner') + ' li'));
+			//self.el.liArray = [].slice.call(self.box.querySelectorAll(classSelector('indexed-list-inner') + ' li'));
 			self.el.alert = self.box.querySelector(classSelector('indexed-list-alert'));
+			/**********改进的地方开始*****************/
+			self.el.liArray=liArray;
+		   /**********改进的地方结束*****************/
 		},
 		caleLayout: function() {
 			var self = this;
 			var withoutSearchHeight = (self.box.offsetHeight - self.el.search.offsetHeight) + 'px';
-			console.log(self.el);
 			self.el.bar.style.height = withoutSearchHeight;
 			self.el.inner.style.height = withoutSearchHeight;
 			var barItemHeight = ((self.el.bar.offsetHeight - 40) / self.el.barItems.length) + 'px';
@@ -99,27 +101,30 @@
 					pointElement = null;
 				}
 			};
-			self.el.bar.addEventListener($.EVENT_MOVE, function(event) {
+			self.el.bar.addEventListener('touchmove', function(event) {
 				findStart(event);
 			}, false);
-			self.el.bar.addEventListener($.EVENT_START, function(event) {
+			self.el.bar.addEventListener('touchstart', function(event) {
 				findStart(event);
 			}, false);
-			document.body.addEventListener($.EVENT_END, function(event) {
+			document.body.addEventListener('touchend', function(event) {
 				findEnd(event);
 			}, false);
-			document.body.addEventListener($.EVENT_CANCEL, function(event) {
+			document.body.addEventListener('touchcancel', function(event) {
 				findEnd(event);
 			}, false);
 		},
 		search: function(keyword) {
 			var self = this;
 			keyword = (keyword || '').toLowerCase();
+			
 			var selectorBuffer = [];
 			var groupIndex = -1;
 			var itemCount = 0;
 			var liArray = self.el.liArray;
+		
 			var itemTotal = liArray.length;
+			//alert(itemTotal);
 			self.hiddenGroups = [];
 			var checkGroup = function(currentIndex, last) {
 				if (itemCount >= currentIndex - groupIndex - (last ? 0 : 1)) {
@@ -137,6 +142,7 @@
 					var text = (item.innerText || '').toLowerCase();
 					var value = (item.getAttribute('data-value') || '').toLowerCase();
 					var tags = (item.getAttribute('data-tags') || '').toLowerCase();
+					
 					if (keyword && text.indexOf(keyword) < 0 &&
 						value.indexOf(keyword) < 0 &&
 						tags.indexOf(keyword) < 0) {
@@ -159,8 +165,13 @@
 			}
 		},
 		bindSearchEvent: function() {
+			
 			var self = this;
 			self.el.searchInput.addEventListener('input', function() {
+		   /******清除滚动动画(后续修改）开始************/
+			var omuiscroll=document.getElementById("scrollContainer");
+			omuiscroll.removeAttribute("style");
+		  /******清除滚动动画(后续修改）结束************/
 				var keyword = this.value;
 				self.search(keyword);
 			}, false);

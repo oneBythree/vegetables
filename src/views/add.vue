@@ -71,7 +71,7 @@ export default {
         },
         ready: function() {
             mui.init();
-             this.loadTypeData();
+            this.loadTypeData();
         },
         methods: {
             goBack: function() {
@@ -86,11 +86,8 @@ export default {
                     this.isSilder = true;
                 }
             },
-            showType:function(){
-               
-                typePicker.show(function(item){
-
-                })
+            showType: function() {
+                typePicker.show(function(item) {})
             },
             validateCome: function() { //验证进场信息
                 if (this.comesData == null || this.comesData.GYS_MC.value == null) {
@@ -126,12 +123,10 @@ export default {
                 }
                 return true;
             },
-            loadTypeData:function(){ //加载明细类型
-                this.$http.get(configPath+'testType.js').then(function(rs){
+            loadTypeData: function() { //加载明细类型
+                this.$http.get(configPath + 'testType.js').then(function(rs) {
                     console.log(rs.json());
                     typePicker.setData(rs.json().data)
-                    // typePicker.pickers[0].setSelectedIndex(index);
-                    // typePicker.pickers[0].setSelectedValue(value);
                 })
             }
         },
