@@ -82,7 +82,9 @@ export default {
             return _data;
         }
     },
-    ready: function() {},
+    ready: function() {
+        console.log(this.selectDrop)
+    },
     methods: {
         selectValue: function(event, key) {
             if (this.SelectDroped !== key) {
@@ -101,6 +103,11 @@ export default {
             this.dropName = null;
         }
     },
+    watch: {
+        myDropName: function(cur, old) {
+            console.log(cur, old);
+        }
+    },
     components: {
         DropSelectItem
     }
@@ -110,7 +117,7 @@ export default {
 .m-props-module {
     position: fixed;
     left: 0;
-    z-index: 1000;
+    z-index: 1001;
     width: 100%;
     height: 100%;
 }

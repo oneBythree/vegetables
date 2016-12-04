@@ -43,6 +43,13 @@
                 </label>
             </div>
         </silder-up>
+        <drop-select :type-name="typeName" 
+                              :header-title="headerTitle" 
+                              :my-drop-name="myDropType"
+                              :drop-name.sync="selected"  
+                              :transition="transitionDrop">
+          
+        </drop-select>
     </div>
 </template>
 <script type="text/javascript">
@@ -51,6 +58,7 @@ import VFooter from '../components/footer/footer.vue';
 import SilderUp from '../components/silder-up/slider-up.vue';
 import VCome from '../components/from/come.vue';
 import Picker from '../components/picker.vue';
+import DropSelect from '../components/drop-select.vue';
 var typePicker = new mui.PopPicker({});
 export default {
     data() {
@@ -66,7 +74,12 @@ export default {
                     type: null,
                     weight: null,
                     money: null
-                }
+                },
+                headerTitle: '明细类型选择',
+                typeName: 'GreenAll',
+                myDropType: 'infoType',
+                transitionDrop: 'right',
+                selected: null,
             }
         },
         ready: function() {
@@ -87,7 +100,8 @@ export default {
                 }
             },
             showType: function() {
-                typePicker.show(function(item) {})
+                // this.isSelectDropType = true;
+                this.selected = 'infoType';
             },
             validateCome: function() { //验证进场信息
                 if (this.comesData == null || this.comesData.GYS_MC.value == null) {
@@ -138,7 +152,8 @@ export default {
             VFooter,
             SilderUp,
             VCome,
-            Picker
+            Picker,
+            DropSelect
             // DatePicker,
             // Picker
         }

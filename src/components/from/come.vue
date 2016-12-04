@@ -80,132 +80,140 @@ platePicker = new mui.PopPicker({
 })
 platePicker.setData(plateData.plateData);
 export default {
-        props: {
-            isRadios: false,
-            rc: null,
-            time: null,
-            address: null,
-            addressValue: null,
-            carsNum: null,
-            comesData: {
-                type: Object,
-                require: true,
-                default: {
-                    GYS_MC: {
-                        value: null
-                    },
-                    IN_DATE: {
-                        value: null
-                    },
-                    AREA_ORIGIN_NAME: {
-                        value: null
-                    },
-                    TRANSPORTER_ID: {
-                        value: null
-                    },
-                    WEIGHT: {
-                        value: null,
-                    },
-                    SUPPLIER_NAME: {
-                        value: null
-                    }
-                }
-            },
-            weight: null,
-            supplier: null,
-            transporter: null,
-            plate: {
-                type: String,
-                require: true,
-                default: '车牌'
-            }
+    props: {
+        isRadios: false,
+        rc: {
+            type:String,
+            require:true,
+            default:'我的供应商'
         },
-        ready: function() {
-            mui.init()
-            this.initSupplier();
+        time: {
+            type: Object,
+            require: true,
+            default: new Date()
         },
-        methods: {
-            showRadios: function() { //展示单选组
-                this.isRadios = this.isRadios ? false : true;
-            },
-            initSupplier: function() {
-                this.$http.get(configPath + 'supplier.js', {
-                    type: "sydata"
-                }, {
-                    headers: {
-                        "X-Requested-With": "XMLHttpRequest"
-                    },
-                    emulateJSON: true
-                }).then(function(response) {
-                    var supplierData = response.json().data;
-                    supplierPicker.setData(supplierData);
-                }).catch(function(response) {
-                    mui.toast('请求错误' + Response)
-                })
-            },
-            checkRadio: function() { //点击单选 关闭展示
-                this.isRadios = false;
-            },
-            showDate: function() { //时间控件
-                var that = this;
-                picker.show(function(rs) {
-                    that.time = rs.value;
-                })
-            },
-            showPlate: function() {
-                var that = this;
-                platePicker.show(function(item) {
-                    that.plate = item[1].text;
-                })
-            },
-            showAddress: function() { //三级联动地址控件
-                var that = this;
-                cityPicker3.show(function(items) {
-                    that.address = (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
-                    that.addressValue = (items[0] || {}).value + " " + (items[1] || {}).value + " " + (items[2] || {}).value;
-                })
-            },
-            showSupplier: function() { //显示供货商
-                var that = this;
-                supplierPicker.show(function(item) {
-                    that.supplier = item[0].text
-                })
-            },
-            conserveComeData: function() { //保存进场数据
-            }
-        },
-        computed: {
-            transporter: function() {
-                return this.plate + this.carsNum;
-            },
-            comesData: function() {
-                return {
-                    GYS_MC: {
-                        value: this.rc
-                    },
-                    IN_DATE: {
-                        value: this.time
-                    },
-                    AREA_ORIGIN_NAME: {
-                        value: this.address
-                    },
-                    TRANSPORTER_ID: {
-                        value: this.transporter
-                    },
-                    WEIGHT: {
-                        value: this.weight,
-                    },
-                    SUPPLIER_NAME: {
-                        value: this.supplier
-                    }
+        address: null,
+        addressValue: null,
+        carsNum: null,
+        comesData: {
+            type: Object,
+            require: true,
+            default: {
+                GYS_MC: {
+                    value: null
+                },
+                IN_DATE: {
+                    value: new Date()
+                },
+                AREA_ORIGIN_NAME: {
+                    value: null
+                },
+                TRANSPORTER_ID: {
+                    value: null
+                },
+                WEIGHT: {
+                    value: null,
+                },
+                SUPPLIER_NAME: {
+                    value: null
                 }
             }
         },
-        components: {
-            DatePicker,
-            Picker,
-            // SilderPlate
+        weight: null,
+        supplier: null,
+        transporter: null,
+        plate: {
+            type: String,
+            require: true,
+            default: '京A'
         }
+    },
+    ready: function() {
+        mui.init()
+        this.initSupplier();
+    },
+    methods: {
+        showRadios: function() { //展示单选组
+            this.isRadios = this.isRadios ? false : true;
+        },
+        initSupplier: function() {
+            this.$http.get(configPath + 'supplier.js', {
+                type: "sydata"
+            }, {
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                },
+                emulateJSON: true
+            }).then(function(response) {
+                var supplierData = response.json().data;
+                supplierPicker.setData(supplierData);
+            }).catch(function(response) {
+                mui.toast('请求错误' + Response)
+            })
+        },
+        checkRadio: function() { //点击单选 关闭展示
+            this.isRadios = false;
+        },
+        showDate: function() { //时间控件
+            var that = this;
+            picker.show(function(rs) {
+                that.time = rs.value;
+            })
+        },
+        showPlate: function() {
+            var that = this;
+            platePicker.show(function(item) {
+                that.plate = item[1].text;
+            })
+        },
+        showAddress: function() { //三级联动地址控件
+            var that = this;
+            cityPicker3.show(function(items) {
+                that.address = (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
+                that.addressValue = (items[0] || {}).value + " " + (items[1] || {}).value + " " + (items[2] || {}).value;
+            })
+        },
+        showSupplier: function() { //显示供货商
+            var that = this;
+            supplierPicker.show(function(item) {
+                that.supplier = item[0].text
+            })
+        },
+        conserveComeData: function() { //保存进场数据
+        }
+    },
+    computed: {
+        transporter: function() {
+            return this.plate + this.carsNum;
+        },
+        comesData: function() {
+            return {
+                GYS_MC: {
+                    value: this.rc
+                },
+                IN_DATE: {
+                    value: this.time
+                },
+                AREA_ORIGIN_NAME: {
+                    value: this.address
+                },
+                TRANSPORTER_ID: {
+                    value: this.transporter
+                },
+                WEIGHT: {
+                    value: this.weight,
+                },
+                SUPPLIER_NAME: {
+                    value: this.supplier
+                }
+            }
+        }
+    },
+    components: {
+        DatePicker,
+        Picker,
+        // SilderPlate
+    }
 }
 </script>
 <style>

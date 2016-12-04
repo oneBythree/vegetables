@@ -1,6 +1,6 @@
 <style>
 @import '../sass/common.css';
-.back-transition {
+/* .back-transition {
     transition: transform .5s ease;
 }
 
@@ -31,11 +31,11 @@
 .app-enter,
 .app-leave {
     opacity: 0;
-}
+} */
 </style>
 <template>
     <div class="animated">
-        <router-view transition="right" keep-alive></router-view>
+        <router-view transition="left" keep-live></router-view>
     </div>
 </template>
 <script>

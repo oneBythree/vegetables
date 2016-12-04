@@ -1,7 +1,7 @@
 <style type="text/css">
 </style>
 <template>
-    <div>
+    <div >
         <!-- 头部 -->
         <v-header :header-title="haedertitle" :right-icon="rightIcon" @right-action="moreMenu" @left-action="goBack" :is-right-text="isRightText">
             <span @click.stop="cancelDel">完成</span>
