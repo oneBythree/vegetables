@@ -174,6 +174,7 @@ export default {
     top: 0;
     left: 0;
     background: #ebebeb;
+    overflow-y: auto;
 }
 
 .m-props-module.animated.m-drop-select-module {

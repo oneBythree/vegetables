@@ -34,7 +34,7 @@
     </div>
     <div class="m-form-group m-diff">
         <span class="lable">运输车牌号<em class="red">*</em></span>
-        <span class="check-span" @click="showPlate">{{plate==null?"车牌":plate}}</span>
+        <span class="check-span" @click="showPlate">{{plate==null?"京A":plate}}</span>
         <label class="flex2 ">
             <input type="text" v-model="carsNum" maxlength="5">
         </label>
@@ -83,15 +83,11 @@ export default {
     props: {
         isRadios: false,
         rc: {
-            type:String,
-            require:true,
-            default:'我的供应商'
-        },
-        time: {
-            type: Object,
+            type: String,
             require: true,
-            default: new Date()
+            default: '我的供应商'
         },
+        time:new Date(),
         address: null,
         addressValue: null,
         carsNum: null,
@@ -207,7 +203,8 @@ export default {
                     value: this.supplier
                 }
             }
-        }
+        },
+       
     },
     components: {
         DatePicker,

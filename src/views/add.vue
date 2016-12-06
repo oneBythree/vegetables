@@ -43,12 +43,21 @@
                 </label>
             </div>
         </silder-up>
-        <drop-select :type-name="typeName" 
-                              :header-title="headerTitle" 
-                              :my-drop-name="myDropType"
-                              :drop-name.sync="selected"  
-                              :transition="transitionDrop">
-          
+        <drop-select :type-name="typeName" :header-title="headerTitle" :my-drop-name="myDropType" :drop-name.sync="selected" :transition="transitionDrop">
+            <div class="m-search-list">
+                <div class="m-search-form">
+                    <form>
+                        <span class="iconfont icon-add"></span>
+                        <input type="text" placeholder="请输入明细类型" />
+                        <button>确定</button>
+                    </form>
+                </div>
+                <ul class="list">
+                    <li v-for="type in infoTypes" class="flex-box">
+                        {{type.value}}   
+                    </li>
+                </ul>
+            </div>
         </drop-select>
     </div>
 </template>
@@ -57,9 +66,7 @@ import VHeader from '../components/header/header.vue';
 import VFooter from '../components/footer/footer.vue';
 import SilderUp from '../components/silder-up/slider-up.vue';
 import VCome from '../components/from/come.vue';
-import Picker from '../components/picker.vue';
 import DropSelect from '../components/drop-select.vue';
-var typePicker = new mui.PopPicker({});
 export default {
     data() {
             return {
@@ -80,6 +87,7 @@ export default {
                 myDropType: 'infoType',
                 transitionDrop: 'right',
                 selected: null,
+                infoTypes: null
             }
         },
         ready: function() {
@@ -140,7 +148,7 @@ export default {
             loadTypeData: function() { //加载明细类型
                 this.$http.get(configPath + 'testType.js').then(function(rs) {
                     console.log(rs.json());
-                    typePicker.setData(rs.json().data)
+                    this.infoTypes = rs.json().data;
                 })
             }
         },
@@ -152,7 +160,6 @@ export default {
             VFooter,
             SilderUp,
             VCome,
-            Picker,
             DropSelect
             // DatePicker,
             // Picker
@@ -160,4 +167,53 @@ export default {
 }
 </script>
 <style>
+.m-search-list {
+    position: relative;
+}
+
+.m-search-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.m-search-form>form {
+    display: box;
+    display: flex;
+    height: .8rem;
+    line-height: .8rem;
+    background: #fff;
+}
+
+.m-search-form>form button {
+    display: inline-block;
+    width: 1rem;
+    border: none;
+    color: #22ac38;
+}
+
+.m-search-form>form span {
+    display: inline-block;
+    width: .8rem;
+    text-align: center;
+}
+
+.m-search-form>form input[type="text"] {
+    flex: 1;
+    padding-left: .2rem;
+}
+
+.m-search-list ul {
+    padding-top: .8rem;
+}
+
+.m-search-list ul>li {
+    padding: .2rem .3rem;
+    border-bottom: 1px solid #ececec;
+}
+
+.m-search-list ul>li:last-of-type {
+    border: none;
+}
 </style>
