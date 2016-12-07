@@ -4,7 +4,7 @@
         <v-header :header-title="haedertitle" @left-action="goBack" :header-title="haedertitle">
         </v-header>
         <!-- 页眉 -->
-        <v-footer :is-footer="isFooter">
+        <v-footer :is-footer="isFooter" >
             <div class="g-cell  left">
                 <label @click="showSilder">
                     <span class="radio-check">
@@ -23,7 +23,7 @@
                 <v-come :comes-data.sync="comesData" :plate.sync="plate" :cars-num.sync="carsNum"></v-come>
             </form>
         </div>
-        <silder-up :is-silder.sync="isSilder" :silder-title="silderTitle">
+        <silder-up :is-silder.sync="isSilder" :silder-title="silderTitle" @footer-submit="silderSubmit">
             <div class="m-form-group">
                 <span class="lable">类型<em class="red">*</em></span>
                 <label class="flex2 ">
@@ -31,33 +31,22 @@
                 </label>
             </div>
             <div class="m-form-group">
-                <span class="lable">重量<em class="red">*</em></span>
+                <span class="lable">重量（kg）<em class="red">*</em></span>
                 <label class="flex2 ">
                     <input type="text" v-model="info.weight">
                 </label>
             </div>
             <div class="m-form-group">
-                <span class="lable">单价<em class="red">*</em></span>
+                <span class="lable">单价（元）<em class="red">*</em></span>
                 <label class="flex2 ">
                     <input type="text" v-model="info.money">
                 </label>
             </div>
         </silder-up>
         <drop-select :type-name="typeName" :header-title="headerTitle" :my-drop-name="myDropType" :drop-name.sync="selected" :transition="transitionDrop">
-            <div class="m-search-list">
-                <div class="m-search-form">
-                    <form>
-                        <span class="iconfont icon-add"></span>
-                        <input type="text" placeholder="请输入明细类型" />
-                        <button>确定</button>
-                    </form>
-                </div>
-                <ul class="list">
-                    <li v-for="type in infoTypes" class="flex-box">
-                        {{type.value}}   
-                    </li>
-                </ul>
-            </div>
+            <search-list :search-data="searchlist" :search-selected="searchSelected" @select-type="selectType">
+                <slot name="type"></slot>
+            </search-list>
         </drop-select>
     </div>
 </template>
@@ -67,6 +56,7 @@ import VFooter from '../components/footer/footer.vue';
 import SilderUp from '../components/silder-up/slider-up.vue';
 import VCome from '../components/from/come.vue';
 import DropSelect from '../components/drop-select.vue';
+import SearchList from '../components/search-list/search-list.vue';
 export default {
     data() {
             return {
@@ -87,7 +77,8 @@ export default {
                 myDropType: 'infoType',
                 transitionDrop: 'right',
                 selected: null,
-                infoTypes: null
+                searchlist: null,
+                searchSelected: null
             }
         },
         ready: function() {
@@ -148,8 +139,18 @@ export default {
             loadTypeData: function() { //加载明细类型
                 this.$http.get(configPath + 'testType.js').then(function(rs) {
                     console.log(rs.json());
-                    this.infoTypes = rs.json().data;
+                    this.searchlist = rs.json().data;
                 })
+            },
+            selectType: function(item) { //点击明细
+                if (this.searchSelected != item.index) {
+                    this.searchSelected = item.index + '';
+                }
+                this.selected = null;
+                this.info.type = item.value;
+            },
+            silderSubmit:function(){ //上啦表单提交
+
             }
         },
         computed: {
@@ -160,14 +161,15 @@ export default {
             VFooter,
             SilderUp,
             VCome,
-            DropSelect
+            DropSelect,
+            SearchList
             // DatePicker,
             // Picker
         }
 }
 </script>
 <style>
-.m-search-list {
+/* .m-search-list {
     position: relative;
 }
 
@@ -206,14 +208,5 @@ export default {
 
 .m-search-list ul {
     padding-top: .8rem;
-}
-
-.m-search-list ul>li {
-    padding: .2rem .3rem;
-    border-bottom: 1px solid #ececec;
-}
-
-.m-search-list ul>li:last-of-type {
-    border: none;
-}
+} */
 </style>

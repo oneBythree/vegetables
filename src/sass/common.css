@@ -78,6 +78,15 @@ header.m-header a.right-icon:active {
 }
 
 
+.pull-left{
+    display: block;
+    float: left;
+}
+
+.pull-right{
+    display: block;
+    float: right;
+}
 /*表格布局*/
 
 .g-table-fix,

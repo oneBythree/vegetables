@@ -9,7 +9,7 @@
              </span>
         </div>
         <slot></slot>
-        <div class="footer">{{silderFooter}}</div>
+        <div class="footer" @click="footerSubmit">{{silderFooter}}</div>
     </div>
     <v-covers :is-covers="isSilder" @close-covers="closeSilder"></v-covers>
 </template>
@@ -41,6 +41,9 @@ export default {
     methods: {
         closeSilder: function() {
             this.isSilder = false;
+        },
+        footerSubmit:function(){
+            this.dispatch('footer-submit');
         }
     },
     computed: {
