@@ -21,6 +21,12 @@ Vue.transition('right', {
     enterClass: 'fadeInRightBig',
     leaveClass: 'fadeOutRightBig'
 });
+
+Vue.transition('left', {
+    enterClass: 'fadeInLeft',
+    leaveClass: 'fadeOuLeft'
+})
+
 Vue.transition('rightLite', {
     enterClass: 'fadeInRight',
     leaveClass: 'fadeOutRight'

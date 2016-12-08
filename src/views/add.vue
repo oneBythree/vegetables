@@ -4,7 +4,7 @@
         <v-header :header-title="haedertitle" @left-action="goBack" :header-title="haedertitle">
         </v-header>
         <!-- 页眉 -->
-        <v-footer :is-footer="isFooter" >
+        <v-footer :is-footer="isFooter">
             <div class="g-cell  left">
                 <label @click="showSilder">
                     <span class="radio-check">
@@ -22,24 +22,27 @@
             <form class="m-form">
                 <v-come :comes-data.sync="comesData" :plate.sync="plate" :cars-num.sync="carsNum"></v-come>
             </form>
+            <chilren-from :is-childern-from="isChildernFrom" :info-children-data="infoChildrenData" :info-index="infoIndex">
+                <slot name="info">
+            </chilren-from>
         </div>
         <silder-up :is-silder.sync="isSilder" :silder-title="silderTitle" @footer-submit="silderSubmit">
             <div class="m-form-group">
                 <span class="lable">类型<em class="red">*</em></span>
                 <label class="flex2 ">
-                    <input type="text" v-model="info.type" readonly="" @click="showType">
+                    <input type="text" v-model="info.type.value" readonly="" @click="showType">
                 </label>
             </div>
             <div class="m-form-group">
                 <span class="lable">重量（kg）<em class="red">*</em></span>
                 <label class="flex2 ">
-                    <input type="text" v-model="info.weight">
+                    <input type="text" v-model="info.weight" placeholder="请输入重量">
                 </label>
             </div>
             <div class="m-form-group">
                 <span class="lable">单价（元）<em class="red">*</em></span>
                 <label class="flex2 ">
-                    <input type="text" v-model="info.money">
+                    <input type="text" v-model="info.money" placeholder="请输入单价">
                 </label>
             </div>
         </silder-up>
@@ -57,6 +60,7 @@ import SilderUp from '../components/silder-up/slider-up.vue';
 import VCome from '../components/from/come.vue';
 import DropSelect from '../components/drop-select.vue';
 import SearchList from '../components/search-list/search-list.vue';
+import ChilrenFrom from '../components/children-from/children-from.vue';
 export default {
     data() {
             return {
@@ -67,8 +71,11 @@ export default {
                 isFooter: true,
                 isSilder: false, //上拉组件
                 silderTitle: '添加明细',
-                info: {
-                    type: null,
+                info: { //明细
+                    type: {
+                        value: null,
+                        index: null
+                    },
                     weight: null,
                     money: null
                 },
@@ -78,7 +85,11 @@ export default {
                 transitionDrop: 'right',
                 selected: null,
                 searchlist: null,
-                searchSelected: null
+                searchSelected: null,
+                infos: [], //添加明细数组
+                isChildernFrom: null, //子菜单明细是否显示
+                infoChildrenData: null, //子菜单明细数据
+                infoIndex: null //明细数组数组的位置
             }
         },
         ready: function() {
@@ -138,7 +149,6 @@ export default {
             },
             loadTypeData: function() { //加载明细类型
                 this.$http.get(configPath + 'testType.js').then(function(rs) {
-                    console.log(rs.json());
                     this.searchlist = rs.json().data;
                 })
             },
@@ -147,10 +157,31 @@ export default {
                     this.searchSelected = item.index + '';
                 }
                 this.selected = null;
-                this.info.type = item.value;
+                this.info.type = item;
             },
-            silderSubmit:function(){ //上啦表单提交
+            silderSubmit: function() { //上拉表单提交
+                if (this.silderTypeViladate()) {
+                    this.isSilder = false;
+                    this.isChildernFrom = true;
+                    this.infoChildrenData = this.info;
+                }
+            },
+            silderTypeViladate: function() { // 提交明细验证
+                if (this.info.type.value == null) {
+                    mui.toast('请选择产品类型');
+                    return false
+                }
 
+                if (this.info.weight == null) {
+                    mui.toast('请输入重量');
+                    return false
+                }
+
+                if (this.info.money == null) {
+                    mui.toast('请输入价格');
+                    return false
+                }
+                return true;
             }
         },
         computed: {
@@ -162,7 +193,8 @@ export default {
             SilderUp,
             VCome,
             DropSelect,
-            SearchList
+            SearchList,
+            ChilrenFrom
             // DatePicker,
             // Picker
         }

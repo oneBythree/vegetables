@@ -43,7 +43,7 @@ export default {
             this.isSilder = false;
         },
         footerSubmit:function(){
-            this.dispatch('footer-submit');
+            this.$dispatch('footer-submit');
         }
     },
     computed: {
