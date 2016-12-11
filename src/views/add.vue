@@ -11,7 +11,7 @@
                         <i  class="iconfont icon-add1"></i>
                     </span>
                     <span>添加明细</span>
-                    <em>()</em>
+                    <em>({{infos.length}})</em>
                 </label>
             </div>
             <div class="g-cell right">
@@ -20,11 +20,12 @@
         </v-footer>
         <div class="m-content">
             <form class="m-form">
-                <v-come :comes-data.sync="comesData" :plate.sync="plate" :cars-num.sync="carsNum"></v-come>
+                <v-come :comes-data.sync="comesData" :plate.sync="plate" :cars-num.sync="carsNum" :weight.sync="allweight"></v-come>
             </form>
-            <chilren-from :is-childern-from="isChildernFrom" :info-children-data="infoChildrenData" :info-index="infoIndex">
+            <chilren-from :array-children-data.sync="infos" @children-edit="childrenEdit">
                 <slot name="info">
             </chilren-from>
+            <div class="m-href-footer"></div>
         </div>
         <silder-up :is-silder.sync="isSilder" :silder-title="silderTitle" @footer-submit="silderSubmit">
             <div class="m-form-group">
@@ -71,7 +72,7 @@ export default {
                 isFooter: true,
                 isSilder: false, //上拉组件
                 silderTitle: '添加明细',
-                info: { //明细
+                info: {
                     type: {
                         value: null,
                         index: null
@@ -87,9 +88,12 @@ export default {
                 searchlist: null,
                 searchSelected: null,
                 infos: [], //添加明细数组
-                isChildernFrom: null, //子菜单明细是否显示
-                infoChildrenData: null, //子菜单明细数据
-                infoIndex: null //明细数组数组的位置
+                ajaxData: null,
+                allweight: 0,
+                editIndex: null
+                    // isChildernFrom: null, //子菜单明细是否显示
+                    // infoChildrenData: null, //子菜单明细数据
+                    // infoIndex: null //明细数组数组的位置
             }
         },
         ready: function() {
@@ -106,11 +110,19 @@ export default {
             },
             showSilder: function() { //展示上拉子表单（验证通过展示）
                 if (this.validateCome()) {
+                    var temp = { //明细
+                        type: {
+                            value: null,
+                            index: null
+                        },
+                        weight: null,
+                        money: null
+                    };
+                    this.info = temp;
                     this.isSilder = true;
                 }
             },
             showType: function() {
-                // this.isSelectDropType = true;
                 this.selected = 'infoType';
             },
             validateCome: function() { //验证进场信息
@@ -161,9 +173,15 @@ export default {
             },
             silderSubmit: function() { //上拉表单提交
                 if (this.silderTypeViladate()) {
-                    this.isSilder = false;
-                    this.isChildernFrom = true;
-                    this.infoChildrenData = this.info;
+                    if (this.editIndex == null) {
+                        this.isSilder = false;
+                        this.infos.push(this.info);
+                    } else {
+                        this.isSilder = false;
+                        this.infos[this.editIndex] = this.info;
+                        this.editIndex = null;
+                    }
+                    scrollBottom();
                 }
             },
             silderTypeViladate: function() { // 提交明细验证
@@ -182,10 +200,21 @@ export default {
                     return false
                 }
                 return true;
+            },
+            childrenEdit: function(data, index) {
+                this.showSilder();
+                this.info = data;
+                this.editIndex = index;
             }
         },
-        computed: {
-
+        watch: {
+            infos: function(cur, old) {
+                var _allweight = 0;
+                cur.map(function(item) {
+                    _allweight += parseFloat(item.weight);
+                })
+                this.allweight = _allweight;
+            }
         },
         components: {
             VHeader,
@@ -199,46 +228,10 @@ export default {
             // Picker
         }
 }
+
+function scrollBottom() {
+    $('html,body').animate({
+        scrollTop: $('.m-href-footer').offset().top
+    });
+}
 </script>
-<style>
-/* .m-search-list {
-    position: relative;
-}
-
-.m-search-form {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.m-search-form>form {
-    display: box;
-    display: flex;
-    height: .8rem;
-    line-height: .8rem;
-    background: #fff;
-}
-
-.m-search-form>form button {
-    display: inline-block;
-    width: 1rem;
-    border: none;
-    color: #22ac38;
-}
-
-.m-search-form>form span {
-    display: inline-block;
-    width: .8rem;
-    text-align: center;
-}
-
-.m-search-form>form input[type="text"] {
-    flex: 1;
-    padding-left: .2rem;
-}
-
-.m-search-list ul {
-    padding-top: .8rem;
-} */
-</style>

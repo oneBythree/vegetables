@@ -52,8 +52,6 @@ export default {
             this.query = '';
         },
         selectType: function(item) {
-
-            console.log(this.searchSelected)
             this.$dispatch('select-type', item);
         }
     },

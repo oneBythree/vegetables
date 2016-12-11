@@ -175,8 +175,7 @@ export default {
                 that.supplier = item[0].text
             })
         },
-        conserveComeData: function() { //保存进场数据
-        }
+      
     },
     computed: {
         transporter: function() {
@@ -203,8 +202,7 @@ export default {
                     value: this.supplier
                 }
             }
-        },
-       
+        }, 
     },
     components: {
         DatePicker,

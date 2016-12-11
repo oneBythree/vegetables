@@ -1,38 +1,40 @@
 <template>
-    <article class="m-children-form" v-if="isChildernFrom">
-        <div class="body">
-            <slot name="info">
-                <dl class="left-pull">
-                    <dd>
-                        <strong>类型</strong>
-                        <span>{{infoChildrenData.type.value}}</span>
-                    </dd>
-                    <dd>
-                        <strong>价格</strong>
-                        <span>{{infoChildrenData.money}}元</span>
-                    </dd>
-                    <dd>
-                        <strong>重量</strong>
-                        <span>{{infoChildrenData.weight}}KG</span>
-                    </dd>
-                </dl>
-                <dl class="right-pull" v-if="isWork">
-                    <dt class="g-row">
-                        <span class="g-cell">
-                                <i class="iconfont icon-edit" @click="childrenEdit"></i>
+    <section v-if="isChildernFrom">
+        <h4><span>明细详情</span></h4>
+        <article class="m-children-form" v-for="childrenData  in arrayChildrenData">
+            <div class="body">
+                <slot name="info">
+                    <dl class="left-pull">
+                        <dd>
+                            <strong>类型</strong>
+                            <span>{{childrenData.type.value}}</span>
+                        </dd>
+                        <dd>
+                            <strong>价格</strong>
+                            <span>{{childrenData.money}} 元</span>
+                        </dd>
+                        <dd>
+                            <strong>重量</strong>
+                            <span>{{childrenData.weight}} KG</span>
+                        </dd>
+                    </dl>
+                    <dl class="right-pull" v-if="isWork">
+                        <dt class="flex-box">
+                            <span class="flex-1">
+                                <i class="iconfont icon-edit" @click="childrenEdit(childrenData,$index)"></i>
                             </span>
-                    </dt>
-                    <dt class="g-row">
-                        <span class="g-cell">
-                                <i class="iconfont icon-del" @click="childrenDel"></i>
+                            <span class="flex-1">
+                                <i class="iconfont icon-del" @click="childrenDel($index)"></i>
                              </span>
-                    </dt>
-                </dl>
-        </div>
-        </slot>
-        <slot></slot>
-        </div>
-    </article>
+                        </dt>
+                    </dl>
+            </div>
+            </slot>
+            <slot></slot>
+            </div>
+        </article>
+       
+    </section>
 </template>
 <script>
 export default {
@@ -42,35 +44,40 @@ export default {
             require: true,
             default: false
         },
-        infoChildrenData: {
-            type: Object,
+        // infoChildrenData: {
+        //     type: Object,
+        //     require: true,
+        //     default: {
+        //         type: {
+        //             value: null,
+        //             index: null
+        //         },
+        //         money: null,
+        //         weight: null
+        //     }
+        // },
+        arrayChildrenData: {
+            type: Array,
             require: true,
-            default: {
-                type: {
-                    value: null,
-                    index: null
-                },
-                money: null,
-                weight: null
-            }
+            default: []
         },
         isWork: {
             type: Boolean,
             require: true,
             default: true
         },
-        infoIndex: {
-            type: Number,
-            require: true,
-            default: 0
-        }
     },
     methods: {
-        childrenEdit: function() {
-            this.$dispatch('children-edit', this.infoChildrenData, this.infoIndex)
+        childrenEdit: function(data, index) {
+            this.$dispatch('children-edit', data, index)
         },
-        childrenDel: function() {
-            this.$dispatch('children-del', this.infoIndex);
+        childrenDel: function(index) {
+            this.$dispatch('children-del', index);
+        }
+    },
+    computed: {
+        isChildernFrom: function() {
+            return this.arrayChildrenData.length > 0 ? true : false;
         }
     }
 }
@@ -89,6 +96,7 @@ export default {
     font-size: .28rem;
     color: #7c7c7c;
     border-radius: .06rem;
+    padding: .1rem 0;
 }
 
 .m-children-form .left-pull {
@@ -106,11 +114,6 @@ export default {
     width: 1rem;
     padding: 0 .2rem;
     border-left: 1px solid #ececec;
-}
-
-.m-children-form .box {
-    padding: 0 .1rem;
-    text-align: center;
 }
 
 .m-children-form .top-pull,
@@ -145,5 +148,57 @@ export default {
     vertical-align: middle;
     text-align: center;
     color: #22ac38;
+}
+
+.m-children-form .flex-box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.m-children-form .flex-1 {
+    position: relative;
+    text-align: center;
+}
+
+.m-children-form .flex-1 .iconfont {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -.25rem 0 0 -.25rem;
+}
+
+h4 {
+    position: relative;
+    text-align: center;
+    line-height: .6rem;
+    height: .6rem;
+    font-size: .28rem;
+    margin: .2rem 0;
+}
+
+h4:before {
+    content: '';
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    border-top: 1px dashed #ccc;
+    width: 90%;
+    z-index: 1;
+}
+
+h4 span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    background: #efeff4;
+    z-index: 2;
+    padding: 0 .3rem;
 }
 </style>
