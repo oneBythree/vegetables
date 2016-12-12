@@ -31,19 +31,19 @@
             <div class="m-form-group">
                 <span class="lable">类型<em class="red">*</em></span>
                 <label class="flex2 ">
-                    <input type="text" v-model="info.type.value" readonly="" @click="showType">
-                </label>
-            </div>
-            <div class="m-form-group">
-                <span class="lable">重量（kg）<em class="red">*</em></span>
-                <label class="flex2 ">
-                    <input type="text" v-model="info.weight" placeholder="请输入重量">
+                    <input type="text" v-model="info.type.value" readonly="" @click="showType" placeholder="请选择明细类型">
                 </label>
             </div>
             <div class="m-form-group">
                 <span class="lable">单价（元）<em class="red">*</em></span>
                 <label class="flex2 ">
                     <input type="text" v-model="info.money" placeholder="请输入单价">
+                </label>
+            </div>
+            <div class="m-form-group">
+                <span class="lable">重量（kg）<em class="red">*</em></span>
+                <label class="flex2 ">
+                    <input type="text" v-model="info.weight" placeholder="请输入重量">
                 </label>
             </div>
         </silder-up>
@@ -175,11 +175,12 @@ export default {
                 if (this.silderTypeViladate()) {
                     if (this.editIndex == null) {
                         this.isSilder = false;
+                         this.searchSelected= null;
                         this.infos.push(this.info);
                     } else {
                         this.isSilder = false;
                         this.infos[this.editIndex] = this.info;
-                        this.infos.$set(this.editIndex,this.info)
+                        this.infos.$set(this.editIndex, this.info)
                         console.info(this.infos)
                         this.editIndex = null;
                     }
@@ -234,6 +235,6 @@ export default {
 function scrollBottom() {
     $('html,body').animate({
         scrollTop: $('.m-href-footer').offset().top
-    });
+    },"slow");
 }
 </script>

@@ -72,7 +72,7 @@ export default {
             this.$dispatch('children-edit', data, index)
         },
         childrenDel: function(index) {
-            this.$dispatch('children-del', index);
+           this.arrayChildrenData.splice(index,1);
         }
     },
     computed: {
