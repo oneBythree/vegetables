@@ -179,6 +179,8 @@ export default {
                     } else {
                         this.isSilder = false;
                         this.infos[this.editIndex] = this.info;
+                        this.infos.$set(this.editIndex,this.info)
+                        console.info(this.infos)
                         this.editIndex = null;
                     }
                     scrollBottom();
