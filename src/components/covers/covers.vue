@@ -1,5 +1,5 @@
 <template>
-    <div class="m-covers" v-if="isCovers" @click="closeCovers" :transition="animateCovers"></div>
+    <div class="m-covers animated" v-if="isCovers" @click="closeCovers" :transition="animateCovers"></div>
 </template>
 <script>
 export default {

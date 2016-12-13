@@ -172,6 +172,7 @@ export default {
                 this.info.type = item;
             },
             silderSubmit: function() { //上拉表单提交
+                console.log(this.searchSelected,this.editIndex)
                 if (this.silderTypeViladate()) {
                     if (this.editIndex == null) {
                         this.isSilder = false;
@@ -180,8 +181,7 @@ export default {
                     } else {
                         this.isSilder = false;
                         this.infos[this.editIndex] = this.info;
-                        this.infos.$set(this.editIndex, this.info)
-                        console.info(this.infos)
+                        this.infos.$set(this.editIndex, this.info);
                         this.editIndex = null;
                     }
                     scrollBottom();
@@ -208,6 +208,7 @@ export default {
                 this.showSilder();
                 this.info = data;
                 this.editIndex = index;
+                console.log(this.editIndex)
             }
         },
         watch: {
@@ -227,8 +228,6 @@ export default {
             DropSelect,
             SearchList,
             ChilrenFrom
-            // DatePicker,
-            // Picker
         }
 }
 

@@ -20,11 +20,11 @@
                     </dl>
                     <dl class="right-pull" v-if="isWork">
                         <dt class="flex-box">
-                            <span class="flex-1">
-                                <i class="iconfont icon-edit" @click="childrenEdit(childrenData,$index)"></i>
+                            <span class="flex-1"  @click="childrenEdit(childrenData,$index)">
+                                <i class="iconfont icon-edit"></i>
                             </span>
-                            <span class="flex-1">
-                                <i class="iconfont icon-del" @click="childrenDel($index)"></i>
+                            <span class="flex-1" @click="childrenDel(childrenData.type.value,$index)">
+                                <i class="iconfont icon-del" ></i>
                              </span>
                         </dt>
                     </dl>
@@ -33,53 +33,56 @@
             <slot></slot>
             </div>
         </article>
-       
     </section>
+    <v-dialog :is-show-dialog.sync="isShowDialog" :dialog-text="dialogText" :cancel-text="cancelText">
+        <slot name="defaultDialog"></slot>
+    </v-dialog>
 </template>
 <script>
+import VDialog from '../dialog/dialog.vue';
 export default {
-    props: {
-        isChildernFrom: {
-            type: Boolean,
-            require: true,
-            default: false
+    data() {
+            return {
+                isShowDialog: false,
+                dialogText: '',
+                cancelText: '取消'
+            }
         },
-        // infoChildrenData: {
-        //     type: Object,
-        //     require: true,
-        //     default: {
-        //         type: {
-        //             value: null,
-        //             index: null
-        //         },
-        //         money: null,
-        //         weight: null
-        //     }
-        // },
-        arrayChildrenData: {
-            type: Array,
-            require: true,
-            default: []
+        props: {
+            isChildernFrom: {
+                type: Boolean,
+                require: true,
+                default: false
+            },
+            arrayChildrenData: {
+                type: Array,
+                require: true,
+                default: []
+            },
+            isWork: {
+                type: Boolean,
+                require: true,
+                default: true
+            },
         },
-        isWork: {
-            type: Boolean,
-            require: true,
-            default: true
+        methods: {
+            childrenEdit: function(data, index) {
+                this.$dispatch('children-edit', data, index)
+            },
+            childrenDel: function(val, index) {
+                this.isShowDialog = true;
+                this.dialogText = '是否删除明细类型 ' + val + ' ?';
+                // this.arrayChildrenData.splice(index, 1);
+            }
         },
-    },
-    methods: {
-        childrenEdit: function(data, index) {
-            this.$dispatch('children-edit', data, index)
+        computed: {
+            isChildernFrom: function() {
+                return this.arrayChildrenData.length > 0 ? true : false;
+            }
         },
-        childrenDel: function(index) {
-           this.arrayChildrenData.splice(index,1);
+        components: {
+            VDialog
         }
-    },
-    computed: {
-        isChildernFrom: function() {
-            return this.arrayChildrenData.length > 0 ? true : false;
-        }
-    }
 }
 </script>
 <style>
