@@ -48,11 +48,6 @@ export default {
     components: {
         NavItem,
     },
-    watch: {
-        // selected(cur, old) {
-        //     console.log(cur, old);
-        // }
-    }
 }
 </script>
 <style scoped lang="sass">

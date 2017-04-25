@@ -1,37 +1,34 @@
 <style>
 @import '../sass/common.css';
-/* .back-transition {
-    transition: transform .5s ease;
+<style> .fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s ease;
 }
 
-.back-enter {
-    transform: translate(-100%, 0);
+.fade-enter,
+.fade-leave-active {
+    opacity: 0
 }
 
-.back-leave {
-    transform: translate(0%, 0);
+.child-view {
+    position: absolute;
+    transition: all .5s cubic-bezier(.55, 0, .1, 1);
 }
 
-.slide-transition {
-    transition: transform 0.3s ease;
-    width: 100%;
-}
-
-
-.slide-leave {
-    transform: translateX(100%);
-}
-.slide-enter{
-    transform: translateX(-100%);
-}
-.app-transition {
-    transition: opacity 0.8s ease;
-}
-
-.app-enter,
-.app-leave {
+.slide-left-enter,
+.slide-right-leave-active {
     opacity: 0;
-} */
+    -webkit-transform: translate(30px, 0);
+    transform: translate(30px, 0);
+}
+
+.slide-left-leave-active,
+.slide-right-enter {
+    opacity: 0;
+    -webkit-transform: translate(-30px, 0);
+    transform: translate(-30px, 0);
+}
+</style>
 </style>
 <template>
     <div class="animated">
@@ -39,7 +36,6 @@
     </div>
 </template>
 <script>
-
 export default {
     data() {
             return {
@@ -47,9 +43,6 @@ export default {
             }
         },
         ready() {
-
-        },
-        beforeDestroy() {
 
         },
         methods: {

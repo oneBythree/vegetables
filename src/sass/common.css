@@ -1,6 +1,13 @@
 @import 'reset.css';
 body {
     background: #ebebeb;
+    // max-width: 720px;
+}
+
+div#app {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .m-content-warp2 {
@@ -51,6 +58,7 @@ header.m-header h1 {
     color: #fff;
     text-align: center;
     font-weight: normal;
+    white-space: nowrap;
     font-size: .32rem;
 }
 
@@ -87,6 +95,10 @@ header.m-header a.right-icon:active {
     float: right;
 }
 
+.pull-center {
+    text-align: center;
+}
+
 
 /*表格布局*/
 
@@ -114,6 +126,12 @@ header.m-header a.right-icon:active {
 .g-list {
     padding: .2rem .3rem;
     margin-bottom: .3rem;
+}
+
+.overflow-hide {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 
@@ -168,7 +186,7 @@ header.m-header a.right-icon:active {
 /* 渐入菜单 */
 
 ul.m-menu-drop {
-    position: fixed;
+    position: absolute;
     top: .88rem;
     right: 1px;
     background: #fff;
@@ -223,6 +241,7 @@ footer.m-footer .radio-check {
     border-radius: 50%;
     border: 1px solid #22ac38;
     text-align: center;
+    font-size: 0;
 }
 
 footer.m-footer .radio-check>i.iconfont {
@@ -317,11 +336,28 @@ footer.m-footer .right-btn {
 .m-form-group label.flex2 {
     flex: 1;
     vertical-align: middle;
+    height: .4rem;
+    line-height: .4rem;
 }
 
-.m-form-group label.flex2>input {
+.m-form-group label.flex2>input,
+.m-form-group label.flex2>span {
+    display: block;
+    position: relative;
+    height: .4rem;
+    line-height: .4rem;
     width: 100%;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.m-form-group label.flex2>span:before {
+    content: attr(placeholder);
+    position: absolute;
+    left: 0;
+    right: 0;
+    color:#989898;
 }
 
 .m-form-group span.right-more {
@@ -401,4 +437,58 @@ footer.m-footer .right-btn {
     font-size: .3rem;
     text-align: center;
     margin-top: .5rem;
+}
+
+.m-props-module .m-content {
+    padding: 0!important;
+    margin-top: .88rem
+}
+
+.veges-list-wapper {
+    overflow-y: scroll;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.mui-dtpicker-title {
+    font-size: 14px;
+}
+
+.line {
+    position: relative;
+    line-height: .6rem;
+    height: .6rem;
+    text-align: center;
+    background: #efeff4;
+    font-size: .3rem;
+}
+
+.line:after {
+    content: '';
+    position: absolute;
+    width: 96%;
+    left: 2%;
+    top: 50%;
+    border-top: 1px dotted #ccc;
+}
+
+.line span {
+    position: relative;
+    display: inline-block;
+    padding: 0 .2rem;
+    z-index: 2;
+    background: #efeff4;
+}
+
+.webkit-clamp1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    color: #7c7c7c;
+    margin: 0;
+    font-size: .3rem;
 }

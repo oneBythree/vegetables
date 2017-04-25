@@ -1,6 +1,6 @@
 <template>
     <header class="m-header">
-        <a href="javascript:;" class="left-icon iconfont {{leftIcon}}" @click="leftClick">
+        <a href="javascript:;" v-if="isLeftIcon" class="left-icon iconfont {{leftIcon}}" @click="leftClick">
         </a>
         <a href="javascript:;" v-if="isRightIcon" class="right-icon iconfont {{rightIcon}}" @click="rightClick">
             <slot v-if="isRightText"></slot>
@@ -19,6 +19,11 @@ export default {
         rightIcon: {
             type: String,
             require: false,
+        },
+        isLeftIcon: {
+            type: Boolean,
+            require: true,
+            default: true
         },
         isRightIcon: {
             type: Boolean,
@@ -58,9 +63,9 @@ export default {
     }
 }
 </script>
-<style >
-    .right-icon.iconfont.temp{
-        font-family: 'Helvetica Neue';
-        -webkit-text-stroke-width: 0;
-    }
+<style>
+.right-icon.iconfont.temp {
+    font-family: 'Helvetica Neue';
+    -webkit-text-stroke-width: 0;
+}
 </style>

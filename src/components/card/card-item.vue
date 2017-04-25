@@ -24,7 +24,7 @@ export default {
         listItemClick: function() {
             if (this.isDel) {
                 this.$dispatch('del-item-click', this.delCheck);
-                this.delCheck = this.delCheck ? false : true;              
+                this.delCheck = this.delCheck ? false : true;
             } else {
                 this.$dispatch('default-item-click');
             }
@@ -45,7 +45,8 @@ export default {
     background: rgba(0, 0, 0, 0.2);
 }
 
-.g-list.r-list.is-del dd.del-radio {
+.g-list.r-list.is-del dd.del-radio,
+em.check-card{
     content: '';
     position: absolute;
     top: 30%;
@@ -58,13 +59,24 @@ export default {
     text-align: center;
 }
 
-.g-list.r-list.is-del dd.del-radio.active {
+.g-list.r-list.is-del dd.del-radio.active,
+em.check-card.active {
     background: #22ac38;
 }
 
-.g-list.r-list.is-del dd.del-radio.active .iconfont {
+.g-list.r-list.is-del dd.del-radio.active .iconfont,
+em.check-card.active .iconfont {
     color: #fff;
     font-size: .3rem;
     color: #fff;
 }
+
+input[type="checkbox"].m-checkbox {
+    left: .2rem;
+    background: rgba(255, 255, 255, 255);
+    /*background-color: transparent;*/
+    /*z-index: 2;*/
+}
+
+
 </style>

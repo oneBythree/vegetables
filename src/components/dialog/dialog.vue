@@ -10,7 +10,7 @@
                 </div>
                 <div class="dialog-footer">
                     <span class="m-btn-cancel" v-if="!!cancelText" @click="clickDialog">{{cancelText}}</span>
-                    <span class="m-btn-right">{{rightText}}</span>
+                    <span class="m-btn-right" @click="rightClick">{{rightText}}</span>
                 </div>
             </div>
         </slot>
@@ -53,6 +53,9 @@ export default {
     methods: {
         clickDialog: function() {
             this.isShowDialog = false;
+        },
+        rightClick:function(){
+            this.$dispatch('dialog-callback')
         }
     },
     watch: {
@@ -149,5 +152,9 @@ export default {
 
 .m-btn-right:active {
     background: #2bd547;
+}
+
+.icon-confirm{
+    color:#999;
 }
 </style>

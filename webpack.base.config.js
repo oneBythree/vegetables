@@ -9,21 +9,21 @@ module.exports = {
     // 入口
     entry: {
         main: './src/entry/main',
-        vendors: ['vue', 'vue-router','vue-resource'],
+        vendors: ['vue', 'vue-router', 'vue-resource', 'vue-touch'],
     },
     // 输出
     output: {
         path: path.join(__dirname, './dist'),
-        publicPath:'./dist',
+        publicPath: './dist',
     },
     // 加载器
     module: {
         loaders: [
             { test: /\.vue$/, loader: 'vue' },
-            { test: /\.js$/, loader: 'babel', exclude: /node_modules/, query: {compact: false} },
-            { test: /\.css$/, loader: 'style!css!autoprefixer'}, // 自动加css3前缀
-            { test: /\.scss$/, loader: 'style!css!sass?sourceMap'},
-            { test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=8192'}, // 低于8K的压缩成base64编码
+            { test: /\.js$/, loader: 'babel', exclude: /node_modules/, query: { compact: false } },
+            { test: /\.css$/, loader: 'style!css!autoprefixer' }, // 自动加css3前缀
+            { test: /\.scss$/, loader: 'style!css!sass?sourceMap' },
+            { test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=8192' }, // 低于8K的压缩成base64编码
             { test: /\.(html|tpl)$/, loader: 'html-loader' }
         ]
     },

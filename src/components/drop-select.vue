@@ -1,5 +1,5 @@
 <template>
-    <div class="m-props-module animated" :class="{'m-green-all':!isType,'m-drop-select-module':isType}" :drop-select="dropName" :my-drop-name="myDropName" v-if="selectDrop" :transition="transition" @click.self="colseDrop">
+    <div id="scrollMathSearch2" class="m-props-module animated" :class="{'m-green-all':!isType,'m-drop-select-module':isType}" :drop-select="dropName" :my-drop-name="myDropName" v-if="selectDrop" :transition="transition" @click.self="colseDrop" >
         <div class="m-props-wapper" v-if="isType">
             <div class="m-props-content ">
                 <div class="m-props-select">
@@ -9,7 +9,7 @@
                 <div class="m-props-covers" v-if="selectDrop" @click="colseDrop">></div>
             </div>
         </div>
-        <div v-else>
+        <div class="relative search" v-else>
             <header class="m-header">
                 <a href="javascript:;" class="left-icon" @click="backDrop">
                     <i class="iconfont icon-close"></i>
@@ -56,10 +56,12 @@ export default {
         transition: {
             type: String,
             require: true,
-            default: 'down'
+            default: 'right'
         }
     },
-
+    ready:function(){
+       
+    },
     computed: {
         selectDrop: function() {
             return this.myDropName === this.dropName ? true : false;
@@ -80,10 +82,8 @@ export default {
                 }
             })
             return _data;
-        }
-    },
-    ready: function() {
-        console.log(this.selectDrop)
+        },
+
     },
     methods: {
         selectValue: function(event, key) {
@@ -101,7 +101,8 @@ export default {
         backDrop: function() {
             this.selectDrop = false;
             this.dropName = null;
-        }
+        },
+
     },
     watch: {
         myDropName: function(cur, old) {
@@ -114,8 +115,18 @@ export default {
 }
 </script>
 <style scoped lang="sass">
+.relative {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .m-props-module {
-    position: fixed;
+    position: absolute;
     left: 0;
     z-index: 1001;
     width: 100%;
@@ -174,7 +185,7 @@ export default {
     top: 0;
     left: 0;
     background: #ebebeb;
-    overflow-y: auto;
+    // overflow-y: auto;
 }
 
 .m-props-module.animated.m-drop-select-module {

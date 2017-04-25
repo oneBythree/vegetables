@@ -20,7 +20,7 @@
                     </dl>
                     <dl class="right-pull" v-if="isWork">
                         <dt class="flex-box">
-                            <span class="flex-1"  @click="childrenEdit(childrenData,$index)">
+                            <span class="flex-1" @click="childrenEdit(childrenData,$index)">
                                 <i class="iconfont icon-edit"></i>
                             </span>
                             <span class="flex-1" @click="childrenDel(childrenData.type.value,$index)">
@@ -92,6 +92,7 @@ export default {
 }
 
 .m-children-form .body {
+    position: relative;
     background: #fff;
     border: 1px solid #ececec;
     display: table;
@@ -100,6 +101,7 @@ export default {
     color: #7c7c7c;
     border-radius: .06rem;
     padding: .1rem 0;
+    overflow: hidden;
 }
 
 .m-children-form .left-pull {
@@ -203,5 +205,7 @@ h4 span {
     background: #efeff4;
     z-index: 2;
     padding: 0 .3rem;
+    color: #999;
+    font-size: .28rem;
 }
 </style>

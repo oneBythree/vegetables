@@ -1,0 +1,176 @@
+{
+    "data": [
+        {
+            "status": null,
+            "tds": {
+                "VEG_NAME": {
+                    "value": "草石蚕"
+                },
+                "PRICE": {
+                    "value": "2.0"
+                },
+                "AREA_ORIGIN_ID": {
+                    "value": "110101"
+                },
+                "WS_SUPPLIER_ID": {
+                    "value": "110114016"
+                },
+                "IS_UPLOAD": {
+                    "value": "0"
+                },
+                "REMARK": {
+                    "value": ""
+                },
+                "TRANFORM_STATE": {
+                    "value": "0"
+                },
+                "AREA_ORIGIN_NAME": {
+                    "value": "北京市市辖区东城区"
+                },
+                "WS_SUPPLIER_NAME": {
+                    "value": "城北回龙观商品交易市场"
+                },
+                "WEIGHT": {
+                    "value": "30.0"
+                },
+                "ID": {
+                    "value": "266269"
+                },
+                "GYS_ID": {
+                    "value": ""
+                },
+                "PROV_ID": {
+                    "value": "11010824002501000000"
+                },
+                "SFXF": {
+                    "value": "1"
+                },
+                "GYS_MC": {
+                    "value": ""
+                },
+                "RECORD_TIME": {
+                    "value": "2017-02-16 16:00:58.0"
+                },
+                "VOUCHER_TYPE": {
+                    "value": "7"
+                },
+                "PLU_CODE": {
+                    "value": ""
+                },
+                "RETAIL_MARKET_NAME": {
+                    "value": "清华华澜园市场"
+                },
+                "UPLOAD_TIME": {
+                    "value": ""
+                },
+                "RETAILER_ID": {
+                    "value": "1101082400250"
+                },
+                "PLU_NAME": {
+                    "value": ""
+                },
+                "RETAIL_MARKET_ID": {
+                    "value": "110108240"
+                },
+                "BATCH_ID": {
+                    "value": "1101082400013605"
+                },
+                "VEG_CODE": {
+                    "value": "01241016"
+                },
+                "IN_DATE": {
+                    "value": "2017-02-16"
+                },
+                "RETAILER_NAME": {
+                    "value": "便民菜二"
+                }
+            }
+        },
+        {
+            "status": null,
+            "tds": {
+                "VEG_NAME": {
+                    "value": "草石蚕"
+                },
+                "PRICE": {
+                    "value": "22.0"
+                },
+                "AREA_ORIGIN_ID": {
+                    "value": "150000"
+                },
+                "WS_SUPPLIER_ID": {
+                    "value": "110106108"
+                },
+                "IS_UPLOAD": {
+                    "value": "0"
+                },
+                "REMARK": {
+                    "value": ""
+                },
+                "TRANFORM_STATE": {
+                    "value": "0"
+                },
+                "AREA_ORIGIN_NAME": {
+                    "value": "内蒙古自治区"
+                },
+                "WS_SUPPLIER_NAME": {
+                    "value": "北京市岳各庄批发市场"
+                },
+                "WEIGHT": {
+                    "value": "300.0"
+                },
+                "ID": {
+                    "value": "266268"
+                },
+                "GYS_ID": {
+                    "value": ""
+                },
+                "PROV_ID": {
+                    "value": "11010824000081000000"
+                },
+                "SFXF": {
+                    "value": "1"
+                },
+                "GYS_MC": {
+                    "value": ""
+                },
+                "RECORD_TIME": {
+                    "value": "2017-02-16 16:00:27.0"
+                },
+                "VOUCHER_TYPE": {
+                    "value": "7"
+                },
+                "PLU_CODE": {
+                    "value": ""
+                },
+                "RETAIL_MARKET_NAME": {
+                    "value": "清华华澜园市场"
+                },
+                "UPLOAD_TIME": {
+                    "value": ""
+                },
+                "RETAILER_ID": {
+                    "value": "1101082400008"
+                },
+                "PLU_NAME": {
+                    "value": ""
+                },
+                "RETAIL_MARKET_ID": {
+                    "value": "110108240"
+                },
+                "BATCH_ID": {
+                    "value": "1101082400013603"
+                },
+                "VEG_CODE": {
+                    "value": "01241016"
+                },
+                "IN_DATE": {
+                    "value": "2017-02-16"
+                },
+                "RETAILER_NAME": {
+                    "value": "赵开荣"
+                }
+            }
+        }
+    ]
+}
